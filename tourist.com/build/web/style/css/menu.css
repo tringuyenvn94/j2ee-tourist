@@ -1,0 +1,53 @@
+﻿#mainmenutab
+{
+	z-index: 11000;
+	margin:0;
+	padding:0;
+	list-style:none;
+	
+}
+#mainmenutab li
+{
+	list-style:none outside none;
+}
+#mainmenutab li a.menu_a
+{
+	background:url("/Style/image/bg_menu.gif") no-repeat scroll left top transparent;
+	height: 27px;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 30px;	
+    padding:0 1px;
+    margin:0;
+    width:198px;
+	display:block;
+	color:#000;
+}
+#mainmenutab li a:hover
+{
+	background:url("/Style/image/bg_menu_over.gif") no-repeat scroll left top transparent;
+	height: 27px;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 30px;	
+    padding:0 1px;
+    margin:0;
+    width:198px;
+	display:block;
+}
+
+.submenu
+{
+	position:absolute;
+	margin:0;
+	padding:0;
+}
+.submenu ul
+{
+	position:absolute;
+	width:150px;
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
