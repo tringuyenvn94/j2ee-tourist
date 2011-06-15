@@ -5,18 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="admin.SignIn" %>
 <%@page import="tourist.entities.ListArticle"%>
 <%@page import="tourist.business.Utility"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
-<%
-    if(SignIn.checkLogin(request)!=true)
-        response.sendRedirect(request.getContextPath()+"/Admin/login.jsp");
-
-%>
 
 <html>
     <head>
@@ -73,7 +66,7 @@
                              <tr class="tbhead">
                                  <th nowrap="nowrap" width="3%">#</th>
                                  <th><a href="#">Tiêu đề</a></th>
-                                 <th nowrap="nowrap" width="15%"><a href="#">Lĩnh vực</a></th>
+                                 <th nowrap="nowrap" width="15%"><a href="#">Chủ đề</a></th>
                                  <th nowrap="nowrap" width="10%"><a href="#">Ngày đăng</a></th>
                                  <th nowrap="nowrap" width="5%"><a href="#">Công khai</a></th>
                                  <th nowrap="nowrap" width="5%"><a href="#">Mã tin</a></th>

@@ -17,6 +17,15 @@ function selectOption(obj,val){
             objselect.options[i].selected=true;
     }
 }
+function selectRadio(obj,val){
+    
+    var objselect=document.getElementsByName(obj);
+    var i=0;
+    for(i=0;i<objselect.length;i++){
+        if(objselect[i].value==val)
+            objselect[i].checked="checked";
+    }
+}
 
 function renderPaging(currpage,pagesize,totalrecord,numdisplay,url)
 {
@@ -79,3 +88,60 @@ function renderPaging(currpage,pagesize,totalrecord,numdisplay,url)
     paging=pre+paging+next;
     document.getElementById('paging').innerHTML=paging;
 }
+
+///////////////////
+/// Article
+///////////////////
+
+function postArticle(formid){
+    var title=document.getElementById("title");
+    var date=document.getElementById("date");
+    var category=document.getElementById("category");
+
+    var flag=true;
+
+    if(title.value==''){
+        alert("Bạn chưa nhập tiêu đề");
+        flag = false;
+    }else{
+        if(category.value==0){
+             alert("Bạn chưa chọn chủ đề");
+             flag = false;
+        }else{
+             if(date.value==''){
+             alert("Bạn chưa chọn ngày đăng");
+             flag = false;
+            }
+        }
+    }
+    if(flag == true)
+        submitform(formid);
+}
+function updateArticle(formid){
+    
+    var title=document.getElementById("title");
+    var date=document.getElementById("date");
+    var category=document.getElementById("category");
+
+    var flag=true;
+    if(title.value==''){
+        alert("Bạn chưa nhập tiêu đề");
+        flag = false;
+    }else{
+        if(category.value==0){
+             alert("Bạn chưa chọn chủ đề");
+             flag = false;
+        }else{
+             if(date.value==''){
+             alert("Bạn chưa chọn ngày đăng");
+             flag = false;
+            }
+        }
+    }
+    if(flag == true){
+        submitform(formid);
+    }
+        
+}
+
+
