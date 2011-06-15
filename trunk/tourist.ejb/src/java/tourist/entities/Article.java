@@ -22,6 +22,7 @@ public class Article {
     private Long _article_date;
     private String _article_thumbnail;
     private Integer _article_published;
+    private Integer _article_special;
 
     /*
      * Contructor
@@ -91,6 +92,13 @@ public class Article {
         this._article_published=article_published;
     }
 
+    public Integer getArticleSpecial(){
+         return this._article_special;
+    }
+    public void setArticleSpecial(Integer _article_special){
+        this._article_special=_article_special;
+    }
+
     /*
      * Field Name
      */
@@ -103,4 +111,5 @@ public class Article {
     public static final String ArticleDate="ArticleDate";
     public static final String ArticleThumbnail="ArticleThumbnail";
     public static final String ArticlePublished="ArticlePublished";
+    public static final String ArticleSpecial="ArticleSpecial";
 }

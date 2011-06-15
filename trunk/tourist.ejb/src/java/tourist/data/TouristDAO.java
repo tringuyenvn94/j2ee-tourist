@@ -91,6 +91,11 @@ public class TouristDAO {
         }catch(SQLException sqle){
             tourist.setTouristPublished(0);
         }
+        try{
+            tourist.setTouristSpecial(rs.getInt(Tourist.TouristSpecial));
+        }catch(SQLException sqle){
+            tourist.setTouristSpecial(0);
+        }
         return tourist;
     }
 
@@ -111,10 +116,43 @@ public class TouristDAO {
         output.append(Tourist.TouristNumDay).append(",");
         output.append(Tourist.TouristNumNight).append(",");
         output.append(Tourist.TouristDate).append(",");
-        output.append(Tourist.TouristPublished);
+        output.append(Tourist.TouristPublished).append(",");
+        output.append(Tourist.TouristSpecial);
 
         StringBuilder condition=new StringBuilder();
         condition.append(Tourist.TouristId).append("=").append(tourist_id);
+
+        StringBuilder query=new StringBuilder();
+        query.append("select ").append(output);
+        query.append(" from ").append(Tourist.TableName);
+        query.append(" where ").append(condition);
+
+        ResultSet rs=this._conn.executeQuery(query.toString());
+        try{
+            if(rs!=null&&rs.next()){
+                tourist=this.initTourist(rs);
+            }
+        }catch(SQLException sqle){
+            tourist=null;
+        }
+        return tourist;
+    }
+    public Tourist getTourist(String condition) {
+        Tourist tourist=null;
+
+        StringBuilder output=new StringBuilder();
+        output.append(Tourist.TouristId).append(",");
+        output.append(Tourist.CategoryId).append(",");
+        output.append(Tourist.TouristTitle).append(",");
+        output.append(Tourist.TouristSummary).append(",");
+        output.append(Tourist.TouristBody).append(",");
+        output.append(Tourist.TouristImage).append(",");
+        output.append(Tourist.TouristPrice).append(",");
+        output.append(Tourist.TouristNumDay).append(",");
+        output.append(Tourist.TouristNumNight).append(",");
+        output.append(Tourist.TouristDate).append(",");
+        output.append(Tourist.TouristPublished).append(",");
+        output.append(Tourist.TouristSpecial);
 
         StringBuilder query=new StringBuilder();
         query.append("select ").append(output);
@@ -142,7 +180,7 @@ public class TouristDAO {
         query.append("select ").append(fieldname);
         query.append(" from ").append(Tourist.TableName);
         query.append(" where ").append(condition);
-        if(order == null ? "" != null : !order.equals("")){
+        if(order!=null && !order.equals("")){
             query.append(" order by ").append(order);
         }
         if(pagesize>0){
@@ -180,7 +218,8 @@ public class TouristDAO {
         input.append(Tourist.TouristNumDay).append(",");
         input.append(Tourist.TouristNumNight).append(",");
         input.append(Tourist.TouristDate).append(",");
-        input.append(Tourist.TouristPublished);
+        input.append(Tourist.TouristPublished).append(",");
+        input.append(Tourist.TouristSpecial);
 
         StringBuilder value=new StringBuilder();
         value.append(tourist.getCategoryId()).append(",");
@@ -192,7 +231,8 @@ public class TouristDAO {
         value.append(tourist.getTouristNumDay()).append(",");
         value.append(tourist.getTouristNumNight()).append(",");
         value.append(tourist.getTouristDate()).append(",");
-        value.append(tourist.getTouristPublished());
+        value.append(tourist.getTouristPublished()).append(",");
+        value.append(tourist.getTouristSpecial());
 
         StringBuilder query=new StringBuilder();
         query.append("insert into ").append(Tourist.TableName);
@@ -230,7 +270,8 @@ public class TouristDAO {
         value.append(Tourist.TouristPrice).append("=").append(tourist.getTouristPrice()).append(",");
         value.append(Tourist.TouristNumDay).append("=").append(tourist.getTouristNumDay()).append(",");
         value.append(Tourist.TouristNumNight).append("=").append(tourist.getTouristNumNight()).append(",");
-        value.append(Tourist.TouristPublished).append("=").append(tourist.getTouristPublished());
+        value.append(Tourist.TouristPublished).append("=").append(tourist.getTouristPublished()).append(",");
+        value.append(Tourist.TouristSpecial).append("=").append(tourist.getTouristSpecial());
 
         StringBuilder condition=new StringBuilder();
         condition.append(Tourist.TouristId).append("=").append(tourist.getTouristId());

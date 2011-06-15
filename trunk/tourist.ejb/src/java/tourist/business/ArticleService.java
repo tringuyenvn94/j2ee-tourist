@@ -21,16 +21,20 @@ public class ArticleService {
     /*
      * Get data
      */
+    // For FrontEnd
     public static Article getArticle(Long article_id){
+        StringBuilder conditon=new StringBuilder();
+        conditon.append(Article.ArticleId).append("=").append(article_id);
+        conditon.append(" and ").append(Article.ArticlePublished).append("=").append(1);
         Article article=null;
         ArticleDAO articledao=ArticleDAO.getInstance();
-        article=articledao.getArticle(article_id);
+        article=articledao.getArticle(conditon.toString());
         if(article==null)
             article=new Article();
         return article;
     }
 
-    public static ListArticle getListArticle(Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
+    public static ListArticle getListArticleByCategory(Integer category_id,Integer currpage,Integer pagesize,Long totalrecord){
         ArticleDAO articledao=ArticleDAO.getInstance();
 
         StringBuilder fieldname=new StringBuilder();
@@ -39,8 +43,79 @@ public class ArticleService {
         fieldname.append(Article.ArticleSummary).append(",");
         fieldname.append(Article.ArticleThumbnail).append(",");
         fieldname.append(Article.ArticleDate).append(",");
-        fieldname.append(Article.ArticlePublished).append(",");
         fieldname.append(Article.CategoryId);
+
+        StringBuilder condition=new StringBuilder();
+        condition.append(Article.CategoryId).append("=").append(category_id).append(" and ");
+        condition.append(Article.ArticlePublished).append("=").append(1);
+
+        StringBuilder order=new StringBuilder();
+        order.append(Article.ArticleDate).append(" DESC");
+
+        return articledao.getListArticle(fieldname.toString(),condition.toString(), currpage, pagesize,totalrecord, order.toString());
+    }
+
+    public static ListArticle getListArticleByLastest(Integer pagesize){
+        ArticleDAO articledao=ArticleDAO.getInstance();
+
+        StringBuilder fieldname=new StringBuilder();
+        fieldname.append(Article.ArticleId).append(",");
+        fieldname.append(Article.ArticleTitle).append(",");
+        fieldname.append(Article.ArticleSummary).append(",");
+        fieldname.append(Article.ArticleThumbnail);
+
+        StringBuilder condition=new StringBuilder();
+        condition.append(Article.ArticlePublished).append("=").append(1);
+        condition.append(" and ").append(Article.ArticleDate).append("<=").append(Utility.parseDateToLong());
+
+        StringBuilder order=new StringBuilder();
+        order.append(Article.ArticleDate).append(" DESC");
+
+        return articledao.getListArticle(fieldname.toString(),condition.toString(), 1, pagesize,Long.valueOf(0), order.toString());
+    }
+
+    public static ListArticle getListArticleBySpecial(Integer pagesize){
+        ArticleDAO articledao=ArticleDAO.getInstance();
+
+        StringBuilder fieldname=new StringBuilder();
+        fieldname.append(Article.ArticleId).append(",");
+        fieldname.append(Article.ArticleTitle).append(",");
+        fieldname.append(Article.ArticleSummary).append(",");
+        fieldname.append(Article.ArticleThumbnail);
+
+        StringBuilder condition=new StringBuilder();
+        condition.append(Article.ArticlePublished).append("=").append(1);
+        condition.append(" and ").append(Article.ArticleSpecial).append("=").append(1);
+        condition.append(" and ").append(Article.ArticleDate).append("<=").append(Utility.parseDateToLong());
+
+        StringBuilder order=new StringBuilder();
+        order.append(Article.ArticleDate).append(" DESC");
+
+        return articledao.getListArticle(fieldname.toString(),condition.toString(), 1, pagesize,Long.valueOf(0), order.toString());
+    }
+    
+    // For BackEnd
+    public static Article getArticleByAdmin(Long article_id){
+        Article article=null;
+        ArticleDAO articledao=ArticleDAO.getInstance();
+        article=articledao.getArticle(article_id);
+        if(article==null)
+            article=new Article();
+        return article;
+    }
+
+    public static ListArticle getListArticleByAdmin(Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
+        ArticleDAO articledao=ArticleDAO.getInstance();
+
+        StringBuilder fieldname=new StringBuilder();
+        fieldname.append(Article.ArticleId).append(",");
+        fieldname.append(Article.CategoryId).append(",");
+        fieldname.append(Article.ArticleTitle).append(",");
+        fieldname.append(Article.ArticleSummary).append(",");
+        fieldname.append(Article.ArticleThumbnail).append(",");
+        fieldname.append(Article.ArticleDate).append(",");
+        fieldname.append(Article.ArticlePublished).append(",");
+        fieldname.append(Article.ArticleSpecial);
 
         StringBuilder condition=new StringBuilder();
         condition.append("1");
@@ -50,6 +125,7 @@ public class ArticleService {
 
         return articledao.getListArticle(fieldname.toString(),condition.toString(), currpage, pagesize,totalrecord, order.toString());
     }
+    
     public static ListArticle getListArticle(Integer pulished,Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
         ArticleDAO articledao=ArticleDAO.getInstance();
 
@@ -70,7 +146,8 @@ public class ArticleService {
 
         return articledao.getListArticle(fieldname.toString(),condition.toString(), currpage, pagesize,totalrecord, order.toString());
     }
-    public static ListArticle getListArticleByCategory(Integer category_id,Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
+    
+    public static ListArticle getListArticleByCategoryAdmin(Integer category_id,Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
         ArticleDAO articledao=ArticleDAO.getInstance();
 
         StringBuilder fieldname=new StringBuilder();
@@ -91,7 +168,8 @@ public class ArticleService {
 
         return articledao.getListArticle(fieldname.toString(),condition.toString(), currpage, pagesize,totalrecord, order.toString());
     }
-    public static ListArticle getListArticleByCategory(Integer category_id,Integer published,Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
+    
+    public static ListArticle getListArticleByCategoryAdmin(Integer category_id,Integer published,Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
         ArticleDAO articledao=ArticleDAO.getInstance();
 
         StringBuilder fieldname=new StringBuilder();
@@ -112,24 +190,7 @@ public class ArticleService {
 
         return articledao.getListArticle(fieldname.toString(),condition.toString(), currpage, pagesize,totalrecord, order.toString());
     }
-
-    public static ListArticle getListArticleByLastest(Integer pagesize){
-        ArticleDAO articledao=ArticleDAO.getInstance();
-
-        StringBuilder fieldname=new StringBuilder();
-        fieldname.append(Article.ArticleId).append(",");
-        fieldname.append(Article.ArticleTitle).append(",");
-        fieldname.append(Article.ArticleSummary).append(",");
-        fieldname.append(Article.ArticleThumbnail);
-
-        StringBuilder condition=new StringBuilder();
-        condition.append(Article.ArticlePublished).append("=").append(1);
-
-        StringBuilder order=new StringBuilder();
-        order.append(Article.ArticleDate).append(" DESC");
-
-        return articledao.getListArticle(fieldname.toString(),condition.toString(), 1, pagesize,Long.valueOf(0), "");
-    }
+    
 
     /*
      * Add data

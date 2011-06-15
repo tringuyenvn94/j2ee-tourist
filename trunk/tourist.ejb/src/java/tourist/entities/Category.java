@@ -17,6 +17,7 @@ public class Category {
     private Integer _category_id;
     private Integer _category_parent_id;
     private String _category_name;
+    private Integer _category_type;
     private Integer _category_published;
     private Integer _category_ordering;
 
@@ -53,6 +54,13 @@ public class Category {
         this._category_name=category_name;
     }
 
+    public Integer getCategoryType(){
+         return this._category_type;
+    }
+    public void setCategoryType(Integer category_type){
+        this._category_type=category_type;
+    }
+
     public Integer getCategoryPublished(){
          return this._category_published;
     }
@@ -74,6 +82,7 @@ public class Category {
     public static final String CategoryId="CategoryId";
     public static final String CategoryParentId="CategoryParentId";
     public static final String CategoryName="CategoryName";
+    public static final String CategoryType="CategoryType";
     public static final String CategoryOrdering="CategoryOrdering";
     public static final String CategoryPublished="CategoryPublished";
 }
