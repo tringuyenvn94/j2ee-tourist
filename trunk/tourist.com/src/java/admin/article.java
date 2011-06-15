@@ -4,8 +4,6 @@
  */
 
 package admin;
-
-import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,6 +16,8 @@ import tourist.business.ArticleService;
 import tourist.business.Utility;
 import tourist.entities.Article;
 import tourist.entities.ListArticle;
+import tourist.entities.ListCategory;
+import tourist.business.CategoryService;
 
 /**
  *
@@ -28,23 +28,38 @@ public class article extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            String url="";
-            String action=request.getParameter("action");
-            if(action==null){
-                actionGetList(request,response);
-            }else{
-                if(action.equals("edit")){
-                    actionEdit(request,response);
-
-                }else{
-                    if(action.equals("post")){
-                        actionPost(request,response);
+        try {            
+            // Check login
+            if(SignIn.checkLogin(request)!=true)
+                response.sendRedirect(request.getContextPath()+"/admin/login.jsp");
+            else{
+                String action=request.getParameter("action");
+                if(action!=null){
+                    ListAction enumaction=ListAction.valueOf(action);
+                    switch(enumaction){
+                        case edit:
+                            this.actionEdit(request,response);
+                            break;
+                        case post:
+                            this.actionPost(request,response);
+                            break;
+                        case add:
+                            this.actionAdd(request, response);
+                            break;
+                        case update:
+                            this.actionUpdate(request, response);
+                            break;
+                        default:
+                            this.actionGetList(request,response);
+                            break;
                     }
                 }
-
-            }            
+                else{
+                    this.actionGetList(request,response);
+                }
+            }
         } finally { 
             out.close();
         }
@@ -96,7 +111,7 @@ public class article extends HttpServlet {
         if(strpage!=null)
            currpage =Integer.valueOf(strpage);
         Long totalrecord=Long.valueOf(0);
-        ListArticle listarticle=ArticleService.getListArticle(currpage,Utility.pagesizeadmin, totalrecord,"DESC");
+        ListArticle listarticle=ArticleService.getListArticleByAdmin(currpage,Utility.pagesizeadmin, totalrecord,"DESC");
         request.setAttribute("listarticle", listarticle);
 
         String url="./admin/article/article.jsp";
@@ -109,9 +124,12 @@ public class article extends HttpServlet {
         Long id=Long.valueOf(0);
         if(strid!=null)
            id =Long.valueOf(strid);
-        Article article=ArticleService.getArticle(id);
-        request.setAttribute("article", article);
+        Article article=ArticleService.getArticleByAdmin(id);
+        ListCategory listcategory=CategoryService.getListCategoryByArticle(1, 0, Long.valueOf(0));
 
+        request.setAttribute("article", article);
+        request.setAttribute("listcategory", listcategory);
+        
         String url="./admin/article/edit.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
@@ -119,23 +137,70 @@ public class article extends HttpServlet {
 
     private void actionPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
         String url="./admin/article/post.jsp";
+        ListCategory listcategory=CategoryService.getListCategoryByArticle(1, 0, Long.valueOf(0));
+        request.setAttribute("listcategory", listcategory);
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
 
     private void actionAdd(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        String title =request.getParameter("title");
-        String published=request.getParameter("published");
-        String fcksummary=request.getParameter("fcksummary");
-        String fckbody=request.getParameter("fckbody");
+        Article article=new Article();
+        try{
+            article.setArticleTitle(request.getParameter("title"));
+            article.setCategoryId(Integer.valueOf(request.getParameter("category")));
+            article.setArticlePublished(Integer.valueOf(request.getParameter("published")));
+            article.setArticleSpecial(Integer.valueOf(request.getParameter("special")));
+            article.setArticleDate(Utility.parseDateToLong(request.getParameter("date")));
+            article.setArticleSummary(request.getParameter("fcksummary"));
+            article.setArticleBody(request.getParameter("fckbody"));
+            article.setArticleThumbnail("");
+            
+            if(ArticleService.addArticle(article)==true){
+                request.setAttribute("message", "success");
+                request.setAttribute("messageinfo", "Thêm bài viết thành công");
+                ListCategory listcategory=CategoryService.getListCategoryByArticle(1, 0, Long.valueOf(0));
+                request.setAttribute("listcategory", listcategory);
+                request.setAttribute("article", article);
 
-        String url="./admin/article/article.jsp";
-        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
-        reqdisparcher.forward(request, response);
+                String url="./admin/article/edit.jsp";
+                RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+                reqdisparcher.forward(request, response);
+            }else
+                response.sendRedirect(request.getContextPath()+"/article");
+        }catch(Exception exp){
+            response.sendRedirect(request.getContextPath()+"/article");
+        }
+        
     }
     private void actionUpdate(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        String url="./admin/article/post.jsp";
-        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
-        reqdisparcher.forward(request, response);
+        Article article=new Article();
+        try{
+            article.setArticleId(Long.valueOf(request.getParameter("articleid")));
+            article.setArticleTitle(request.getParameter("title"));
+            article.setCategoryId(Integer.valueOf(request.getParameter("category")));
+            article.setArticlePublished(Integer.valueOf(request.getParameter("published")));
+            article.setArticleSpecial(Integer.valueOf(request.getParameter("special")));
+            article.setArticleDate(Utility.parseDateToLong(request.getParameter("date")));
+            article.setArticleSummary(request.getParameter("fcksummary"));
+            article.setArticleBody(request.getParameter("fckbody"));
+            article.setArticleThumbnail("");
+            
+            if(article.getArticleId()!=null){
+                if(ArticleService.updateArticle(article)==true){
+                    response.sendRedirect(request.getContextPath()+"/article");
+                } else{
+                    request.setAttribute("article", article);
+                    ListCategory listcategory=CategoryService.getListCategoryByArticle(1, 0, Long.valueOf(0));
+                    request.setAttribute("listcategory", listcategory);
+                    String url="./admin/article/edit.jsp";
+                    RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+                    reqdisparcher.forward(request, response);
+                }
+            }else{
+                response.sendRedirect(request.getContextPath()+"/article");
+            }
+        }catch(Exception exp){
+            response.sendRedirect(request.getContextPath()+"/article");
+        }
     }
 }

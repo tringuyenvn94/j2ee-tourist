@@ -10,7 +10,7 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <%
     if(SignIn.checkLogin(request)!=true)
-        response.sendRedirect(request.getContextPath()+"/Admin/login.jsp");
+        response.sendRedirect(request.getContextPath()+"/admin/login.jsp");
 
 %>
 <html>
@@ -36,7 +36,7 @@
                                 <tbody>
                                     <tr>
                                         <td id="toolbar-new" class="button">
-                                            <a class="toolbar" href="#">
+                                            <a class="toolbar" href="<%= request.getContextPath()%>/tourist?action=post">
                                                 <span title="New" class="icon-32-new">
                                                 </span>
                                                     Đăng tin

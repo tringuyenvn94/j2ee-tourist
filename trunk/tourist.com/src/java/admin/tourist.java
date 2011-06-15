@@ -33,10 +33,32 @@ public class tourist extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String url="./admin/tourist/tourist.jsp";
-            //request.setAttribute("errorinfo", "UserName and Password in correct");
-            RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
-            reqdisparcher.forward(request, response);
+            if(SignIn.checkLogin(request)!=true)
+                response.sendRedirect(request.getContextPath()+"/admin/login.jsp");
+            else{                
+                String action=request.getParameter("action");
+                if(action!=null){
+                    ListAction enumaction=ListAction.valueOf(action);
+                    switch(enumaction){
+                        case edit:
+                            this.actionEdit(request,response);
+                            break;
+                        case post:
+                            this.actionPost(request,response);
+                            break;
+                        case add:
+                            break;
+                        case update:
+                            break;
+                        default:
+                            this.actionGetList(request,response);
+                            break;
+                    }
+                }
+                else{
+                    this.actionGetList(request,response);
+                }                
+            }            
         } finally { 
             out.close();
         }
@@ -78,4 +100,22 @@ public class tourist extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+
+    private void actionGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String url="./admin/tourist/tourist.jsp";
+        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+        reqdisparcher.forward(request, response);
+    }
+
+    private void actionEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String url="./admin/tourist/edit.jsp";
+        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+        reqdisparcher.forward(request, response);
+    }
+
+    private void actionPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String url="./admin/tourist/post.jsp";
+        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+        reqdisparcher.forward(request, response);
+    }
 }

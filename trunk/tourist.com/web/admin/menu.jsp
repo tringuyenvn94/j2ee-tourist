@@ -4,7 +4,7 @@
     <ul class="menutop level1">
         <li class="parent root">
             <a href="#" class="daddy item">
-                <span>Bài Viết</span>
+                <span>Quản Lý Bài Viết</span>
             </a>
             <ul class="level2">
                 <li class="">
@@ -13,32 +13,49 @@
                     </a>                    
                 </li>
                 <li class="">
-                    <a href="<%= request.getContextPath()%>/tourist" class="daddy item">
-                        <span>Chương Trình Tour</span>
+                    <a href="<%= request.getContextPath()%>/category" class="daddy item">
+                        <span>Chủ đề</span>
                     </a>
                 </li>
             </ul>
         </li>
         <li class="parent root">
             <a href="#" class="daddy item">
+                <span>Quản lý Du Lịch</span>
+            </a>
+            <ul class="level2">
+                <li class="item60">
+                    <a href="<%= request.getContextPath()%>/tourist" class="item">
+                        <span>Chương trình tour</span>
+                    </a>					
+                </li>
+                <li class="item62">
+                    <a href="#" class="item">
+                        <span>Loại tour</span>
+                    </a>
+                </li>
+                <li class="item61">
+                    <a href="#" class="item">
+                        <span>Điểm du lịch</span>
+                    </a>
+                </li>                
+            </ul>
+        </li>
+		<li class="parent root">
+            <a href="#" class="daddy item">
                 <span>Khách Hàng</span>
             </a>
             <ul class="level2">
                 <li class="item60">
-                    <a href="" class="item">
-                        <span>Đăng Tour</span>
-                    </a>
-                </li>
-                <li class="item61">
-                    <a href="/webproject/index.php?option=com_content&amp;view=article&amp;id=55&amp;Itemid=61" class="item">
-                            <span>Sub menu 2</span>
-                    </a>
+                    <a href="<%= request.getContextPath()%>/tourist" class="item">
+                        <span>Đăng ký tour</span>
+                    </a>					
                 </li>
                 <li class="item62">
-                    <a href="/webproject/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=37&amp;Itemid=62" class="item">
-                            <span>Sub menu 3</span>
+                    <a href="#" class="item">
+                        <span>Khách hàng bình luận</span>
                     </a>
-                </li>
+                </li>                          
             </ul>
         </li>
         <li class="parent root">
