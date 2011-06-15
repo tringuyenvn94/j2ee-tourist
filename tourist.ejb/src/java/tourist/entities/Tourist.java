@@ -25,6 +25,7 @@ public class Tourist {
     private Integer _tourist_num_night;
     private Long _tourist_date;
     private Integer _tourist_published;
+    private Integer _tourist_special;
 
     /*
      * Contructor
@@ -111,6 +112,13 @@ public class Tourist {
         this._tourist_published=tourist_published;
     }
 
+    public Integer getTouristSpecial(){
+        return this._tourist_special;
+    }
+    public void setTouristSpecial(Integer _tourist_special){
+        this._tourist_special=_tourist_special;
+    }
+
     /*
      * Field Name
      */
@@ -126,4 +134,5 @@ public class Tourist {
     public static final String TouristNumNight="TouristNumNight";
     public static final String TouristDate="TouristDate";
     public static final String TouristPublished="TouristPublished";
+    public static final String TouristSpecial="TouristSpecial";
 }

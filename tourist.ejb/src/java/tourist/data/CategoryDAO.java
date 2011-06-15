@@ -52,6 +52,11 @@ public class CategoryDAO {
             categoty.setCategoryName("");
         }
         try{
+            categoty.setCategoryType(rs.getInt(Category.CategoryType));
+        }catch(SQLException sqle){
+            categoty.setCategoryType(0);
+        }
+        try{
             categoty.setCategoryPublished(rs.getInt(Category.CategoryPublished));
         }catch(SQLException sqle){
             categoty.setCategoryPublished(0);
@@ -74,6 +79,7 @@ public class CategoryDAO {
         output.append(Category.CategoryId).append(",");
         output.append(Category.CategoryParentId).append(",");
         output.append(Category.CategoryName).append(",");
+        output.append(Category.CategoryType).append(",");
         output.append(Category.CategoryPublished).append(",");
         output.append(Category.CategoryOrdering);
 
@@ -103,7 +109,8 @@ public class CategoryDAO {
         StringBuilder output=new StringBuilder();
         output.append(Category.CategoryId).append(",");
         output.append(Category.CategoryParentId).append(",");
-        output.append(Category.CategoryName);
+        output.append(Category.CategoryName).append(",");
+        output.append(Category.CategoryType);
 
         StringBuilder condition=new StringBuilder();
         condition.append(Category.CategoryPublished).append("=1");
@@ -131,6 +138,39 @@ public class CategoryDAO {
         return listcategory;
     }
 
+    public ListCategory getListCategory(String fieldname,String condition, Integer currpage,Integer pagesize,Long totalrecord, String order){
+        ListCategory listcategory=new ListCategory();
+        Category category=null;
+
+        totalrecord=this._conn.getTotalRecord(Category.TableName, condition);
+
+        StringBuilder query=new StringBuilder();
+        query.append("select ").append(fieldname);
+        query.append(" from ").append(Category.TableName);
+        query.append(" where ").append(condition);
+        if(order!=null && !order.equals("")){
+            query.append(" order by ").append(order);
+        }
+        if(pagesize>0){
+            this._conn.checkPage(currpage, pagesize, totalrecord);
+            Long offset=currpage.longValue()-1;
+            offset=offset*pagesize;
+            query.append(" limit ").append(offset).append(",").append(pagesize);
+        }
+
+        ResultSet rs=this._conn.executeQuery(query.toString());
+        try{
+            if(rs!=null){
+                while(rs.next()){
+                    category=this.initCategory(rs);
+                    listcategory.add(category);
+                }
+            }
+        }catch(SQLException sqle){
+            listcategory.clear();
+        }
+        return listcategory;
+    }
     /*
      * Set data
      */

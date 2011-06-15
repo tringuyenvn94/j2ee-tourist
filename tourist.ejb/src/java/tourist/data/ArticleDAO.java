@@ -77,6 +77,11 @@ public class ArticleDAO {
         }catch(SQLException sqle){
             article.setArticlePublished(0);
         }
+        try{
+            article.setArticleSpecial(rs.getInt(Article.ArticleSpecial));
+        }catch(SQLException sqle){
+            article.setArticleSpecial(0);
+        }
         return article;
     }
 
@@ -94,10 +99,41 @@ public class ArticleDAO {
         output.append(Article.ArticleBody).append(",");
         output.append(Article.ArticleThumbnail).append(",");
         output.append(Article.ArticleDate).append(",");
-        output.append(Article.ArticlePublished);
+        output.append(Article.ArticlePublished).append(",");
+        output.append(Article.ArticleSpecial);
 
         StringBuilder condition=new StringBuilder();
         condition.append(Article.ArticleId).append("=").append(article_id);
+
+        StringBuilder query=new StringBuilder();
+        query.append("select ").append(output);
+        query.append(" from ").append(Article.TableName);
+        query.append(" where ").append(condition);
+
+        ResultSet rs=this._conn.executeQuery(query.toString());
+        try{
+            if(rs!=null&&rs.next()){
+                article=this.initArticle(rs);
+            }
+        }catch(SQLException sqle){
+            article=null;
+        }
+        return article;
+    }
+
+    public Article getArticle(String condition) {
+        Article article=null;
+
+        StringBuilder output=new StringBuilder();
+        output.append(Article.ArticleId).append(",");
+        output.append(Article.CategoryId).append(",");
+        output.append(Article.ArticleTitle).append(",");
+        output.append(Article.ArticleSummary).append(",");
+        output.append(Article.ArticleBody).append(",");
+        output.append(Article.ArticleThumbnail).append(",");
+        output.append(Article.ArticleDate).append(",");
+        output.append(Article.ArticlePublished).append(",");
+        output.append(Article.ArticleSpecial);
 
         StringBuilder query=new StringBuilder();
         query.append("select ").append(output);
@@ -125,7 +161,7 @@ public class ArticleDAO {
         query.append("select ").append(fieldname);
         query.append(" from ").append(Article.TableName);
         query.append(" where ").append(condition);
-        if(order == null ? "" != null : !order.equals("")){
+        if(order!=null && !order.equals("")){
             query.append(" order by ").append(order);
         }
         if(pagesize>0){
@@ -160,7 +196,8 @@ public class ArticleDAO {
         input.append(Article.ArticleBody).append(",");
         input.append(Article.ArticleThumbnail).append(",");
         input.append(Article.ArticleDate).append(",");
-        input.append(Article.ArticlePublished);
+        input.append(Article.ArticlePublished).append(",");
+        input.append(Article.ArticleSpecial);
         
         StringBuilder value=new StringBuilder();
         value.append(article.getCategoryId()).append(",");
@@ -169,7 +206,8 @@ public class ArticleDAO {
         value.append("'").append(article.getArticleBody()).append("',");
         value.append("'").append(article.getArticleThumbnail()).append("',");
         value.append(article.getArticleDate()).append(",");
-        value.append(article.getArticlePublished());
+        value.append(article.getArticlePublished()).append(",");
+        value.append(article.getArticleSpecial());
 
         StringBuilder query=new StringBuilder();
         query.append("insert into ").append(Article.TableName);
@@ -204,7 +242,9 @@ public class ArticleDAO {
         value.append(Article.ArticleSummary).append("='").append(article.getArticleSummary()).append("',");
         value.append(Article.ArticleBody).append("='").append(article.getArticleBody()).append("',");
         value.append(Article.ArticleThumbnail).append("='").append(article.getArticleThumbnail()).append("',");
+        value.append(Article.ArticleDate).append("='").append(article.getArticleDate()).append("',");
         value.append(Article.ArticlePublished).append("=").append(article.getArticlePublished()).append(",");
+        value.append(Article.ArticleSpecial).append("=").append(article.getArticleSpecial());
 
         StringBuilder condition=new StringBuilder();
         condition.append(Article.ArticleId).append("=").append(article.getArticleId());

@@ -67,6 +67,16 @@ public class Utility {
 
         return (Long)date.getTime();
     }
+    public static Long parseDateToLong(String strdate){
+        Date date;
+        DateFormat dateformat=new SimpleDateFormat("MM/dd/yyyy");
+        try{
+            date=(Date)dateformat.parse(strdate.toString());
+        }catch(ParseException pex){
+            date=new Date();
+        }
+        return (Long)date.getTime();
+    }
     public static String parseDateToString(String format){
         Date date=new Date();
         DateFormat dateformat=new SimpleDateFormat(format);//("dd/MM/yyyy");
