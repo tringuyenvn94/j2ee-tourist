@@ -111,6 +111,24 @@ public class TouristService {
         return tourist;
     }
 
+    public static ListTourist getListTouristByAdmin(Integer currpage,Integer pagesize,Long totalrecord,String orderdirection){
+        StringBuilder fieldname=new StringBuilder();
+        fieldname.append(Tourist.TouristId).append(",");
+        fieldname.append(Tourist.TouristTitle).append(",");
+        fieldname.append(Tourist.CategoryId).append(",");
+        fieldname.append(Tourist.TouristDate).append(",");
+        fieldname.append(Tourist.TouristPublished);
+
+        StringBuilder condition=new StringBuilder();
+        condition.append(1);
+
+        StringBuilder order=new StringBuilder();
+        order.append(Tourist.TouristDate).append(" ").append(orderdirection);
+
+        TouristDAO touristdao=TouristDAO.getInstance();
+        return touristdao.getListTourist(fieldname.toString(), condition.toString(), currpage, pagesize, totalrecord, order.toString());
+    }
+
     public static ListTourist getListTouristByCategoryAdmin(Integer category_id,Integer currpage,Integer pagesize,Long totalrecord){
         StringBuilder fieldname=new StringBuilder();
         fieldname.append(Tourist.TouristId).append(",");
@@ -122,8 +140,10 @@ public class TouristService {
         fieldname.append(Tourist.TouristPrice);
 
         StringBuilder condition=new StringBuilder();
-        condition.append(Tourist.CategoryId).append("=").append(category_id);
-        condition.append(" and ").append(Tourist.TouristPublished).append("=").append(1);
+        condition.append(1);
+        if(category_id>0){
+            condition.append(" and ").append(Tourist.CategoryId).append("=").append(category_id);
+        }       
 
         StringBuilder order=new StringBuilder();
         order.append(Tourist.TouristDate).append(" DESC");
@@ -136,8 +156,6 @@ public class TouristService {
      * Add data
      */
     public static boolean addTourist(Tourist tourist){
-        tourist.setTouristDate(Utility.parseDateToLong());
-
         TouristDAO touristdao=TouristDAO.getInstance();
         touristdao.setTourist(tourist);
         if(tourist.getTouristId()!=0)

@@ -196,8 +196,6 @@ public class ArticleService {
      * Add data
      */
     public static boolean addArticle(Article article){
-        article.setArticleDate(Utility.parseDateToLong());
-
         ArticleDAO articledao=ArticleDAO.getInstance();
         articledao.setArticle(article);
         if(article.getArticleId()!=0)
