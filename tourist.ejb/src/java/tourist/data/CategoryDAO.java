@@ -178,12 +178,14 @@ public class CategoryDAO {
         StringBuilder input=new StringBuilder();
         input.append(Category.CategoryParentId).append(",");
         input.append(Category.CategoryName).append(",");
+        input.append(Category.CategoryType).append(",");
         input.append(Category.CategoryPublished).append(",");
         input.append(Category.CategoryOrdering);
 
         StringBuilder value=new StringBuilder();
         value.append(category.getCategoryParentId()).append(",");
         value.append("'").append(category.getCategoryName()).append("',");
+        value.append(category.getCategoryType()).append(",");
         value.append(category.getCategoryPublished()).append(",");
         value.append(category.getCategoryOrdering());
 
@@ -217,6 +219,7 @@ public class CategoryDAO {
         StringBuilder value=new StringBuilder();
         value.append(Category.CategoryParentId).append("=").append(category.getCategoryParentId()).append(",");
         value.append(Category.CategoryName).append("='").append(category.getCategoryName()).append("',");
+        value.append(Category.CategoryType).append("=").append(category.getCategoryType()).append(",");
         value.append(Category.CategoryPublished).append("=").append(category.getCategoryPublished()).append(",");
         value.append(Category.CategoryOrdering).append("=").append(category.getCategoryOrdering());
 
