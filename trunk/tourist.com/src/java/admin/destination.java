@@ -15,17 +15,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import tourist.entities.Category;
-import tourist.entities.ListCategory;
-import tourist.business.CategoryService;
-import tourist.business.Utility;
+import tourist.entities.Destination;
+import tourist.entities.ListDestination;
+import tourist.business.DestinationService;
+import tourist.business.NationService;
+import tourist.entities.ListNation;
+import tourist.entities.Nation;
 
 /**
  *
  * @author VANGANH
  */
-@WebServlet(name="category", urlPatterns={"/category"})
-public class category extends HttpServlet {
+@WebServlet(name="destination", urlPatterns={"/destination"})
+public class destination extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -60,7 +62,6 @@ public class category extends HttpServlet {
                             this.actionUpdate(request, response);
                             break;
                         case del:
-                            this.actionRemove(request, response);
                             break;
                         default:
                             this.actionGetList(request,response);
@@ -113,21 +114,18 @@ public class category extends HttpServlet {
     }// </editor-fold>
 
     private void actionGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        ListCategory listcategory=CategoryService.getListCategory(1,0,Long.valueOf(0));
-        List<String> listcategorytype=new ArrayList<String>();
-        if(listcategory!=null){
-            listcategorytype=CategoryService.getListCategoryType(listcategory);
-        }
-        request.setAttribute("listcategory", listcategory);
-        request.setAttribute("listcategorytype", listcategorytype);
+        ListDestination listdestination=DestinationService.getListDestinationByTourist(Long.MIN_VALUE);        
+        
+        request.setAttribute("listdestination", listdestination);
+        //request.setAttribute("listcategorytype", listcategorytype);
 
-        String url="./admin/category/category.jsp";
+        String url="./admin/destination/destination.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
 
     private void actionEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String strid=request.getParameter("id");
+        /*String strid=request.getParameter("id");
         Integer id=0;
         if(strid!=null)
            id =Integer.valueOf(strid);
@@ -137,17 +135,20 @@ public class category extends HttpServlet {
 
         String url="./admin/category/edit.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
-        reqdisparcher.forward(request, response);
+        reqdisparcher.forward(request, response);*/
     }
 
     private void actionPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String url="./admin/category/post.jsp";
+        ListNation listnation=NationService.getListNation();
+        request.setAttribute("listnation", listnation);
+        
+        String url="./admin/destination/post.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
 
     private void actionAdd(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        Category category=new Category();
+        /*Category category=new Category();
         try{
             String messageinfo="";
             if(this.checkInfo(category, request, messageinfo)==true){
@@ -171,11 +172,10 @@ public class category extends HttpServlet {
         }catch(Exception exp){
             response.sendRedirect(request.getContextPath()+"/category");
         }
-
+*/
     }
-
     private void actionUpdate(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        Category category=new Category();
+        /*Category category=new Category();
         try{
             String messageinfo="";
             category.setCategoryId(Integer.valueOf(request.getParameter("id")));
@@ -202,53 +202,26 @@ public class category extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/category");
         }catch(Exception exp){
             response.sendRedirect(request.getContextPath()+"/category");
-        }
+        }*/
     }
 
-    private void actionRemove(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        String strid=request.getParameter("id");
-        Integer id=Integer.valueOf(0);
-        if(strid!=null)
-           id =Integer.valueOf(strid);
-        if(CategoryService.removeCategory(id)==true){
-            request.setAttribute("message","success");
-            request.setAttribute("messageinfo","Xóa thành công");
-        }else{
-            request.setAttribute("message","error");
-            request.setAttribute("messageinfo","Xóa thất bại");
-        }
-        this.actionGetList(request, response);
-    }
-
-    private boolean checkInfo(Category category,HttpServletRequest request,String message){
+    private boolean checkInfo(Destination destination,HttpServletRequest request,String message){
         try{
-            category.setCategoryName(request.getParameter("title"));
+            destination.setDestinationName(request.getParameter("title"));
         }catch(Exception exp){
             message="Tên không đúng định dạng ";
             return false;
         }
         try{
-            category.setCategoryOrdering(0);
+            destination.setTownId(Integer.valueOf(request.getParameter("town")));
         }catch(Exception exp){
             message="";
             return false;
         }
         try{
-            category.setCategoryParentId(0);
+            destination.setDestinationImage("");
         }catch(Exception exp){
             message="";
-            return false;
-        }
-        try{
-            category.setCategoryPublished(Integer.valueOf(request.getParameter("published")));
-        }catch(Exception exp){
-            message="Sai dữ liệu ";
-            return false;
-        }
-        try{
-            category.setCategoryType(Integer.valueOf(request.getParameter("categorytype")));
-        }catch(Exception exp){
-            message="Sai dữ liệu ";
             return false;
         }        
         return true;

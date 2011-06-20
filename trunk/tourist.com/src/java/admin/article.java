@@ -51,6 +51,9 @@ public class article extends HttpServlet {
                         case update:
                             this.actionUpdate(request, response);
                             break;
+                        case del:
+                            this.actionRemove(request, response);
+                            break;
                         default:
                             this.actionGetList(request,response);
                             break;
@@ -112,7 +115,12 @@ public class article extends HttpServlet {
            currpage =Integer.valueOf(strpage);
         Long totalrecord=Long.valueOf(0);
         ListArticle listarticle=ArticleService.getListArticleByAdmin(currpage,Utility.pagesizeadmin, totalrecord,"DESC");
+        ListCategory listcategory = null;
+        if(listarticle!=null){            
+            listcategory=CategoryService.getListCategory(listarticle);
+        }
         request.setAttribute("listarticle", listarticle);
+        request.setAttribute("listcategory", listcategory);
 
         String url="./admin/article/article.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
@@ -172,10 +180,11 @@ public class article extends HttpServlet {
         }
         
     }
+
     private void actionUpdate(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
         Article article=new Article();
         try{
-            article.setArticleId(Long.valueOf(request.getParameter("articleid")));
+            article.setArticleId(Long.valueOf(request.getParameter("id")));
             article.setArticleTitle(request.getParameter("title"));
             article.setCategoryId(Integer.valueOf(request.getParameter("category")));
             article.setArticlePublished(Integer.valueOf(request.getParameter("published")));
@@ -187,20 +196,38 @@ public class article extends HttpServlet {
             
             if(article.getArticleId()!=null){
                 if(ArticleService.updateArticle(article)==true){
-                    response.sendRedirect(request.getContextPath()+"/article");
+                    request.setAttribute("message", "success");
+                    request.setAttribute("messageinfo", "Cập nhật thành công");                    
                 } else{
-                    request.setAttribute("article", article);
-                    ListCategory listcategory=CategoryService.getListCategoryByArticle(1, 0, Long.valueOf(0));
-                    request.setAttribute("listcategory", listcategory);
-                    String url="./admin/article/edit.jsp";
-                    RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
-                    reqdisparcher.forward(request, response);
+                    request.setAttribute("message", "error");
+                    request.setAttribute("messageinfo", "Cập nhật thất bại! Hãy thử lại sau");                    
                 }
+                request.setAttribute("article", article);
+                ListCategory listcategory=CategoryService.getListCategoryByArticle(1, 0, Long.valueOf(0));
+                request.setAttribute("listcategory", listcategory);
+                String url="./admin/article/edit.jsp";
+                RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+                reqdisparcher.forward(request, response);
             }else{
                 response.sendRedirect(request.getContextPath()+"/article");
             }
         }catch(Exception exp){
             response.sendRedirect(request.getContextPath()+"/article");
         }
+    }
+
+    private void actionRemove(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+        String strid=request.getParameter("id");
+        Long id=Long.valueOf(0);
+        if(strid!=null)
+           id =Long.valueOf(strid);
+        if(ArticleService.removeArticle(id)==true){
+            request.setAttribute("message","success");
+            request.setAttribute("messageinfo","Xóa thành công");
+        }else{
+            request.setAttribute("message","error");
+            request.setAttribute("messageinfo","Xóa thất bại");
+        }
+        this.actionGetList(request, response);
     }
 }
