@@ -51,7 +51,7 @@
                                 <tbody>
                                     <tr>
                                       <td id="toolbar-save" class="button">
-                                          <a class="toolbar" href="#" onclick="postArticle('postarticle')">
+                                          <a class="toolbar" href="#" onclick="postArticle('adminform')">
                                                 <span title="Save" class="icon-32-save">
                                                 </span>
                                                     Lưu
@@ -86,7 +86,7 @@
                         </div>
                      </div>
                      <div class="m">
-                         <form action="<%= request.getContextPath()%>/article" method="post" id="postarticle" name="postarticle">
+                         <form action="<%= request.getContextPath()%>/article" method="post" id="adminform" name="adminform">
                              <table width="100%">
                                  <tr>
                                      <td width="7%">

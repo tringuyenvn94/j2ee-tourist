@@ -60,7 +60,7 @@
                                 <tbody>
                                     <tr>
                                         <td id="toolbar-apply" class="button">
-                                            <a class="toolbar" href="#" onclick="updateArticle('postarticle')">
+                                            <a class="toolbar" href="#" onclick="postArticle('adminform')">
                                                 <span title="Apply" class="icon-32-apply">
                                                 </span>
                                                     Cập nhật
@@ -115,7 +115,7 @@
                         </div>
                      </div>
                      <div class="m">
-                         <form action="<%= request.getContextPath()%>/article" method="post" id="postarticle" name="postarticle">
+                         <form action="<%= request.getContextPath()%>/article" method="post" id="adminform" name="adminform">
                              <table width="100%">
                                  <tr>
                                      <td width="7%">
@@ -189,7 +189,7 @@
                                  </tr>
                              </table>
                              <input type="hidden" value="update" name="action"/>
-                             <input type="hidden" value="<%=article.getArticleId()%>" name="articleid"/>
+                             <input type="hidden" value="<%=article.getArticleId()%>" name="id"/>
                          </form>
                      </div>
                      <div class="b">
