@@ -42,49 +42,35 @@ function renderPaging(currpage,pagesize,totalrecord,numdisplay,url)
 
     var pos_start,pos_end;
 
-    if(numdisplay>=totalpage)
-    {
+    if(numdisplay>=totalpage){
         pos_start=1;
         pos_end=totalpage;
-    }
-    else
-    {
+    }else{
         var half=parseInt(numdisplay/2);
-        if(currpage<=half)
-        {
+        if(currpage<=half){
             pos_start=1;
-        }
-        else
-        {
+        }else{
             pos_start=currpage-half+1;
         }
         pos_end=numdisplay;
     }
-    if(currpage-1>0)
-    {
+    if(currpage-1>0){
         pre="<a href='"+url+"&page="+(currpage-1)+"' class='next'>Trước</a>";
     }
-    if(currpage+1<=totalpage)
-    {
+    if(currpage+1<=totalpage){
         next="<a href='"+url+"&page="+(currpage+1)+"' class='next'>Sau</a>";
     }
-    for(var i=0;i<pos_end;i++)
-    {
-        if(i!=0)
-        {
+    for(var i=0;i<pos_end;i++) {
+        if(i!=0){
             paging+=" - ";
         }
-        if(pos_start==currpage)
-        {
+        if(pos_start==currpage){
             paging+="<strong class='current'>"+pos_start+"</strong>";
-        }
-        else
-        {
+        }else{
             paging+="<a href='"+url+"&page="+pos_start+"'>"+pos_start+"</a>";
         }
         pos_start++;
     }
-
     paging=pre+paging+next;
     document.getElementById('paging').innerHTML=paging;
 }
@@ -102,46 +88,114 @@ function postArticle(formid){
 
     if(title.value==''){
         alert("Bạn chưa nhập tiêu đề");
-        flag = false;
-    }else{
-        if(category.value==0){
-             alert("Bạn chưa chọn chủ đề");
-             flag = false;
-        }else{
-             if(date.value==''){
-             alert("Bạn chưa chọn ngày đăng");
-             flag = false;
-            }
-        }
+        return;
+    }
+    if(category.value==0){
+         alert("Bạn chưa chọn chủ đề");
+         return;
+    }
+    if(date.value==''){
+         alert("Bạn chưa chọn ngày đăng");
+         return;
     }
     if(flag == true)
         submitform(formid);
 }
-function updateArticle(formid){
-    
+function removeObject(formid,id){
+    var answer = confirm('Bạn muốn xóa?');
+    if(answer){
+        var objid=document.getElementById("id");
+        objid.value=id;
+        submitform(formid);
+    }
+}
+
+/////////////////////
+/// Tourist
+////////////////////
+
+function postTourist(formid){
     var title=document.getElementById("title");
     var date=document.getElementById("date");
     var category=document.getElementById("category");
-
+    var price=document.getElementById("price");
+    var numday=document.getElementById("numday");
+    var numnight=document.getElementById("numnight");
     var flag=true;
+    
     if(title.value==''){
         alert("Bạn chưa nhập tiêu đề");
-        flag = false;
-    }else{
-        if(category.value==0){
-             alert("Bạn chưa chọn chủ đề");
-             flag = false;
-        }else{
-             if(date.value==''){
-             alert("Bạn chưa chọn ngày đăng");
-             flag = false;
-            }
+        return;
+    }
+    if(category.value==0 ){
+        alert("Bạn chưa chọn chủ đề");
+        return;
+    }
+    if(date.value==''){
+        alert("Bạn chưa chọn ngày đăng");
+        return;
+    }
+    if(isNaN(parseInt(price.value))){
+        alert("Giá không đúng");
+        return;
+    }
+    if(isNaN(parseInt(numday.value))){
+        alert("Số ngày không đúng");
+                return;
+    }
+    if(numnight.value=='')
+        numnight.value=0;
+    else{
+        if(isNaN(parseInt(numnight.value))){
+            alert("Số đêm không đúng");
+            return;
         }
     }
-    if(flag == true){
+    
+    if(flag == true)
         submitform(formid);
+}
+
+////////////////////
+/// Category
+////////////////////
+
+function postCategory(formid){
+    var title=document.getElementById("title");
+    var categorytype=document.getElementById("categorytype");
+    var flag=true;
+
+    if(title.value==''){
+        alert("Bạn chưa nhập tiêu đề");
+        return;
     }
-        
+    if(categorytype.value==0){
+        alert("Bạn chưa chọn loại chủ đề");
+        return;
+    }
+    if(flag == true)
+        submitform(formid);
+}
+
+////////////////////
+/// Destination
+////////////////////
+
+function postDestination(formid){
+    var title=document.getElementById("title");
+    var town=document.getElementById("town");
+    var flag=true;
+
+    if(title.value==''){
+        alert("Bạn chưa nhập tiêu đề");
+        return;
+    }
+    if(town.value==0){
+        alert("Bạn chưa chọn tỉnh/tp");
+        return;
+    }
+    if(flag == true)
+        submitform(formid);
 }
 
 
