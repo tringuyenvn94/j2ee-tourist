@@ -3,7 +3,7 @@
 <div id="horizmenu-surround">
     <ul class="menutop level1">
         <li class="parent root">
-            <a href="#" class="daddy item">
+            <a class="daddy item">
                 <span>Quản Lý Bài Viết</span>
             </a>
             <ul class="level2">
@@ -20,7 +20,7 @@
             </ul>
         </li>
         <li class="parent root">
-            <a href="#" class="daddy item">
+            <a class="daddy item">
                 <span>Quản lý Du Lịch</span>
             </a>
             <ul class="level2">
@@ -28,21 +28,16 @@
                     <a href="<%= request.getContextPath()%>/tourist" class="item">
                         <span>Chương trình tour</span>
                     </a>					
-                </li>
-                <li class="item62">
-                    <a href="#" class="item">
-                        <span>Loại tour</span>
-                    </a>
-                </li>
+                </li>                
                 <li class="item61">
-                    <a href="#" class="item">
+                    <a href="<%= request.getContextPath()%>/destination" class="item">
                         <span>Điểm du lịch</span>
                     </a>
                 </li>                
             </ul>
         </li>
 		<li class="parent root">
-            <a href="#" class="daddy item">
+            <a class="daddy item">
                 <span>Khách Hàng</span>
             </a>
             <ul class="level2">

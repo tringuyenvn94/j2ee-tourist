@@ -1,26 +1,25 @@
 <%-- 
-    Document   : tourist
-    Created on : Jun 12, 2011, 9:49:38 AM
+    Document   : category
+    Created on : Jun 16, 2011, 4:49:41 PM
     Author     : VANGANH
 --%>
 
-<%@page import="tourist.business.Utility"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="tourist.entities.ListTourist" %>
-<%@page import="tourist.entities.ListCategory" %>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="tourist.entities.ListCategory" %>
+<%@page import="java.util.List"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+
 <%
-    ListTourist listtourist=(ListTourist)request.getAttribute("listtourist");
     ListCategory listcategory=(ListCategory)request.getAttribute("listcategory");
+    List<String> listcategorytype=(List<String>)request.getAttribute("listcategorytype");
     String message=(String)request.getAttribute("message");
 %>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Chương trình tour</title>
+        <title>Quản lý chủ đề</title>
         <%@include file="../script.jsp" %>
     </head>
     <body>
@@ -40,7 +39,7 @@
                                 <tbody>
                                     <tr>
                                         <td id="toolbar-new" class="button">
-                                            <a class="toolbar" href="<%= request.getContextPath()%>/tourist?action=post">
+                                            <a class="toolbar" href="<%= request.getContextPath()%>/category?action=post">
                                                 <span title="New" class="icon-32-new">
                                                 </span>
                                                     Thêm mới
@@ -51,7 +50,7 @@
                             </table>
                         </div>
                         <div class="header icon-48-article">
-                            Quản lý tour
+                            Quản lý chủ đề
                         </div>
                         <%if(message!=null){%>
                             <dl id="system-message">
@@ -90,33 +89,32 @@
                          <table class="tbstyle">
                              <tr class="tbhead">
                                  <th nowrap="nowrap" width="3%">#</th>
-                                 <th><a href="#">Tên chương trình</a></th>
-                                 <th nowrap="nowrap" width="15%"><a href="#">Loại tour</a></th>
-                                 <th nowrap="nowrap" width="10%"><a href="#">Ngày đăng</a></th>
+                                 <th><a href="#">Tên chủ đề</a></th>
+                                 <th nowrap="nowrap" width="15%"><a href="#">Loại</a></th>
                                  <th nowrap="nowrap" width="5%"><a href="#">Công khai</a></th>
-                                 <th nowrap="nowrap" width="5%"><a href="#">Mã tour</a></th>
+                                 <th nowrap="nowrap" width="5%"><a href="#">Mã chủ đề</a></th>
                                  <th nowrap="nowrap" width="5%"><a href="#">Xóa</a></th>
                              </tr>
                              <%
-                                if(listtourist!=null && listcategory!=null && listtourist.size()==listcategory.size()){
-                                      for(int index=0;index<listtourist.size();index++){%>
-                                        <tr>
-                                            <td align="center"><%=(index+1)%></td>
-                                            <td><a href="<%= request.getContextPath()%>/tourist?action=edit&id=<%=listtourist.get(index).getTouristId()%>"><%=listtourist.get(index).getTouristTitle()%></a></td>
-                                            <td><%=listcategory.get(index).getCategoryName()%></td>
-                                            <td align="center"><%=Utility.parseDateToString(listtourist.get(index).getTouristDate(), "dd/MM/yyyy")%></td>
-                                            <td align="center"><%=listtourist.get(index).getTouristPublished()%></td>
-                                            <td align="center"><%=listtourist.get(index).getTouristId()%></td>
-                                            <td align="center">
-                                                <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listtourist.get(index).getTouristId()%>)">
-                                                    <img alt="Xóa"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-remove.jpg" width="16" height="16" border="0"/>
-                                                </a>
-                                            </td>
-                                        </tr>
-                              <%        }
-                                } %>
+                                if(listcategory!=null && listcategorytype!=null && listcategory.size()==listcategorytype.size()){
+                                    for(int index=0;index<listcategory.size();index++){%>
+                                    <tr>
+                                        <td align="center"><%=index+1%></td>
+                                        <td><a href="<%= request.getContextPath()%>/category?action=edit&id=<%=listcategory.get(index).getCategoryId()%>"><%=listcategory.get(index).getCategoryName()%></a></td>
+                                        <td><%=listcategorytype.get(index)%></td>
+                                        <td align="center"><%=listcategory.get(index).getCategoryPublished()%></td>
+                                        <td align="center"><%=listcategory.get(index).getCategoryId()%></td>
+                                        <td align="center">
+                                            <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listcategory.get(index).getCategoryId()%>)">
+                                                <img alt="Xóa"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-remove.jpg" width="16" height="16" border="0"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%}
+                                }
+                            %>
                          </table>
-                         <form action="<%= request.getContextPath()%>/tourist" method="post" id="adminform" name="adminform">
+                         <form action="<%= request.getContextPath()%>/category" method="post" id="adminform" name="adminform">
                              <input id="id" name="id" type="hidden" value=""/>
                              <input name="action" type="hidden" value="del"/>
                          </form>
