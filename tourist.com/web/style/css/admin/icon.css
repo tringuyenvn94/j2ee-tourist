@@ -32,6 +32,7 @@
 /** toolbar icons **/
 .icon-32-send 			{ background-image: url(../images/toolbar/icon-32-send.png); }
 .icon-32-delete 		{ background-image: url(../images/toolbar/icon-32-delete.png); }
+.icon-32-remove 		{ background-image: url(../../../style/image/admin/icon-32-remove.jpg); }
 .icon-32-help 			{ background-image: url(../images/toolbar/icon-32-help.png); }
 .icon-32-cancel 		{ background-image: url(../../../style/image/admin/icon-32-cancel.png); }
 .icon-32-config 		{ background-image: url(../images/toolbar/icon-32-config.png); }
