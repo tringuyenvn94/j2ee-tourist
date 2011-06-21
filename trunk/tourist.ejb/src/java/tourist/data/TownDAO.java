@@ -90,6 +90,7 @@ public class TownDAO {
 
         StringBuilder output=new StringBuilder();
         output.append(Town.TownId+",");
+        output.append(Town.NationId+",");
         output.append(Town.TownName);
 
         StringBuilder condition=new StringBuilder();

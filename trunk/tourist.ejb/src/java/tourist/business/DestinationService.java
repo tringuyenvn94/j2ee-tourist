@@ -30,6 +30,19 @@ public class DestinationService {
         return destination;
     }
 
+    public static ListDestination getListDestination(Integer currpage,Integer pagesize,Long totalrecoed){
+
+        StringBuilder fieldname=new StringBuilder();
+        fieldname.append(Destination.DestinationId).append(",");
+        fieldname.append(Destination.DestinationName).append(",");
+        fieldname.append(Destination.TownId);
+
+        StringBuilder condition=new StringBuilder();
+        condition.append(1);
+
+        DestinationDAO destinationdao=DestinationDAO.getInstance();
+        return destinationdao.getListDestination(fieldname.toString(), condition.toString(), currpage, pagesize, totalrecoed, "");
+    }
     public static ListDestination getListDestinationByTown(Integer town_id){
         DestinationDAO destinationdao=DestinationDAO.getInstance();
         return destinationdao.getListDestinationByTown(town_id);

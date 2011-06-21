@@ -174,7 +174,7 @@ public class DestinationDAO {
         query.append("select ").append(fieldname);
         query.append(" from ").append(Destination.TableName);
         query.append(" where ").append(condition);
-        if(order == null ? "" != null : !order.equals(""))
+        if(order != null && !order.equals(""))
             query.append(" order by ").append(order);
         if(pagesize>0){
             this._conn.checkPage(currpage, pagesize, totalrecord);
