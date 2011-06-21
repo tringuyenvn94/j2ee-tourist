@@ -7,11 +7,14 @@ package admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import tourist.entities.*;
+import tourist.business.*;
 
 /**
  *
@@ -33,7 +36,12 @@ public class ajaxadmin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");        
         try {
             String action=request.getParameter("action");
-            
+            if(action!=null){
+                if(action.equals("gettowns")){
+                    this.actionGetTowns(request, response);
+                    return;
+                }
+            }
         } finally { 
             
         }
@@ -75,4 +83,18 @@ public class ajaxadmin extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void actionGetTowns(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+        Integer id=0;
+        try{
+            id=Integer.valueOf(request.getParameter("nationid"));
+        }catch(Exception exp){
+            id=0;
+        }
+        ListTown listtown=TownService.getListTown(id);
+        request.setAttribute("listtown", listtown);
+
+        String url="./admin/ajaxadmin/gettown.jsp";
+        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+        reqdisparcher.forward(request, response);
+    }
 }

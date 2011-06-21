@@ -19,8 +19,12 @@ import tourist.entities.Destination;
 import tourist.entities.ListDestination;
 import tourist.business.DestinationService;
 import tourist.business.NationService;
+import tourist.business.TownService;
+import tourist.business.Utility;
 import tourist.entities.ListNation;
+import tourist.entities.ListTown;
 import tourist.entities.Nation;
+import tourist.entities.Town;
 
 /**
  *
@@ -62,6 +66,7 @@ public class destination extends HttpServlet {
                             this.actionUpdate(request, response);
                             break;
                         case del:
+                            this.actionRemove(request, response);
                             break;
                         default:
                             this.actionGetList(request,response);
@@ -113,32 +118,49 @@ public class destination extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void actionGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        ListDestination listdestination=DestinationService.getListDestinationByTourist(Long.MIN_VALUE);        
+    private void actionGetList(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException{
+        String strpage=request.getParameter("page");
+        Integer currpage=1;
+        if(strpage!=null)
+           currpage =Integer.valueOf(strpage);
+        Long totalrecord=Long.valueOf(0);
+        ListDestination listdestination=DestinationService.getListDestination(currpage, Utility.pagesizeadmin, totalrecord);
         
-        request.setAttribute("listdestination", listdestination);
-        //request.setAttribute("listcategorytype", listcategorytype);
+        request.setAttribute("listdestination", listdestination);        
 
         String url="./admin/destination/destination.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
 
-    private void actionEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        /*String strid=request.getParameter("id");
+    private void actionEdit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        String strid=request.getParameter("id");
         Integer id=0;
         if(strid!=null)
            id =Integer.valueOf(strid);
-        Category category=CategoryService.getCategory(id);
+        Destination destination=DestinationService.getDestination(id);
+        ListNation listnation=null;
+        Town town=null;
+        ListTown listtown=null;
+        if(destination!=null){
+            listnation=NationService.getListNation();
+            town=TownService.getTown(destination.getTownId());
+            listtown=TownService.getListTown(town.getNationId());
+        }
 
-        request.setAttribute("category", category);
+        request.setAttribute("destination", destination);
+        request.setAttribute("listnation", listnation);        
+        request.setAttribute("listtown", listtown);
 
-        String url="./admin/category/edit.jsp";
+        String url="./admin/destination/edit.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
-        reqdisparcher.forward(request, response);*/
+        reqdisparcher.forward(request, response);
     }
 
-    private void actionPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void actionPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
         ListNation listnation=NationService.getListNation();
         request.setAttribute("listnation", listnation);
         
@@ -147,22 +169,31 @@ public class destination extends HttpServlet {
         reqdisparcher.forward(request, response);
     }
 
-    private void actionAdd(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        /*Category category=new Category();
+    private void actionAdd(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+        Destination destination=new Destination();
         try{
             String messageinfo="";
-            if(this.checkInfo(category, request, messageinfo)==true){
-                if(CategoryService.addCategory(category)==true){
+            if(this.checkInfo(destination, request, messageinfo)==true){
+                if(DestinationService.addDestination(destination)==true){
+                    ListNation listnation=null;
+                    Town town=null;
+                    ListTown listtown=null;
+                    listnation=NationService.getListNation();
+                    town=TownService.getTown(destination.getTownId());
+                    listtown=TownService.getListTown(town.getNationId());
+
                     request.setAttribute("message", "success");
                     request.setAttribute("messageinfo", "Thêm thành công");
-
-                    request.setAttribute("category", category);
-
-                    String url="./admin/category/edit.jsp";
+                    request.setAttribute("destination", destination);
+                    request.setAttribute("listnation", listnation);
+                    request.setAttribute("listtown", listtown);
+                    
+                    String url="./admin/destination/edit.jsp";
                     RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
                     reqdisparcher.forward(request, response);
                 }else{
-                    response.sendRedirect(request.getContextPath()+"/category");
+                    response.sendRedirect(request.getContextPath()+"/destination");
                 }
             }else{
                 request.setAttribute("message", "error");
@@ -170,27 +201,37 @@ public class destination extends HttpServlet {
                 this.actionPost(request,response);
             }
         }catch(Exception exp){
-            response.sendRedirect(request.getContextPath()+"/category");
+            response.sendRedirect(request.getContextPath()+"/destination");
         }
-*/
     }
-    private void actionUpdate(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        /*Category category=new Category();
+
+    private void actionUpdate(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+        Destination destination=new Destination();
         try{
             String messageinfo="";
-            category.setCategoryId(Integer.valueOf(request.getParameter("id")));
-            if(category.getCategoryId()!=null){
-                if(this.checkInfo(category, request, messageinfo)==true){
-                    if(CategoryService.updateCategory(category)==true){
+            destination.setDestinationId(Integer.valueOf(request.getParameter("id")));
+            if(destination.getDestinationId()!=null){
+                if(this.checkInfo(destination, request, messageinfo)==true){
+                    if(DestinationService.updateDestination(destination)==true){
                         request.setAttribute("message", "success");
                         request.setAttribute("messageinfo", "Cập nhật thành công");
                     }else{
                         request.setAttribute("message", "error");
                         request.setAttribute("messageinfo", "Cập nhật thất bại! Hãy thử lại sau");
                     }
-                    request.setAttribute("category", category);
+                    ListNation listnation=null;
+                    Town town=null;
+                    ListTown listtown=null;
+                    listnation=NationService.getListNation();
+                    town=TownService.getTown(destination.getTownId());
+                    listtown=TownService.getListTown(town.getNationId());
+                    
+                    request.setAttribute("destination", destination);
+                    request.setAttribute("listnation", listnation);
+                    request.setAttribute("listtown", listtown);
 
-                    String url="./admin/category/edit.jsp";
+                    String url="./admin/destination/edit.jsp";
                     RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
                     reqdisparcher.forward(request, response);
                 }else{
@@ -199,10 +240,27 @@ public class destination extends HttpServlet {
                     this.actionEdit(request,response);
                 }
             }else
-                response.sendRedirect(request.getContextPath()+"/category");
+                response.sendRedirect(request.getContextPath()+"/destination");
         }catch(Exception exp){
-            response.sendRedirect(request.getContextPath()+"/category");
-        }*/
+            response.sendRedirect(request.getContextPath()+"/destination");
+        }
+    }
+
+    private void actionRemove(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+        String strid=request.getParameter("id");
+        Integer id=Integer.valueOf(0);
+        if(strid!=null){
+            id=Integer.valueOf(strid);
+        }
+        if(DestinationService.removeDestination(id)){
+            request.setAttribute("message","success");
+            request.setAttribute("messageinfo","Xóa thành công");
+        }else{
+            request.setAttribute("message","error");
+            request.setAttribute("messageinfo","Xóa thất bại");
+        }
+        this.actionGetList(request, response);
     }
 
     private boolean checkInfo(Destination destination,HttpServletRequest request,String message){
