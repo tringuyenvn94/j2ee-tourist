@@ -13,7 +13,6 @@
 
 <%
     ListDestination listdestination=(ListDestination)request.getAttribute("listdestination");
-    //List<String> listcategorytype=(List<String>)request.getAttribute("listcategorytype");
 %>
 <html>
     <head>
@@ -72,6 +71,7 @@
                                  <th><a href="#">Tên điểm du lịch</a></th>
                                  <th nowrap="nowrap" width="30%"><a href="#">Tỉnh/Thành Phố</a></th>
                                  <th nowrap="nowrap" width="5%"><a href="#">Mã chủ đề</a></th>
+                                 <th nowrap="nowrap" width="5%"><a href="#">Xóa</a></th>
                              </tr>
                              <%
                                 if(listdestination!=null){// && listcategorytype!=null && listcategory.size()==listcategorytype.size()){
@@ -81,11 +81,20 @@
                                         <td><a href="<%= request.getContextPath()%>/destination?action=edit&id=<%=listdestination.get(index).getDestinationId()%>"><%=listdestination.get(index).getDestinationName()%></a></td>
                                         <td><%=listdestination.get(index).getTownId()%></td>
                                         <td align="center"><%=listdestination.get(index).getDestinationId()%></td>
+                                        <td align="center">
+                                            <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listdestination.get(index).getDestinationId()%>)">
+                                                <img alt="Xóa"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-remove.jpg" width="16" height="16" border="0"/>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <%}
                                 }
                             %>
                          </table>
+                         <form action="<%= request.getContextPath()%>/destination" method="post" id="adminform" name="adminform">
+                             <input id="id" name="id" type="hidden" value=""/>
+                             <input name="action" type="hidden" value="del"/>
+                         </form>
                      </div>
                      <div class="b">
                         <div class="b">

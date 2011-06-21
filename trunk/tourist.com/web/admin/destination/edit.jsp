@@ -4,24 +4,27 @@
     Author     : VANGANH
 --%>
 
+<%@page import="tourist.entities.ListTown"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="tourist.entities.Category" %>
+<%@page import="tourist.entities.Destination" %>
+<%@page import="tourist.entities.ListNation"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<%
-    //request.setCharacterEncoding("UTF-8");
-    Category category=(Category)request.getAttribute("category");
-    if(category==null)
-        response.sendRedirect(request.getContextPath()+"/category");
+<%    
+    Destination destination=(Destination)request.getAttribute("destination");
+    if(destination==null)
+        response.sendRedirect(request.getContextPath()+"/destination");
+    ListNation listnation=(ListNation)request.getAttribute("listnation");
+    ListTown listtown=(ListTown)request.getAttribute("listtown");
     String message=(String)request.getAttribute("message");
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=category.getCategoryName()%></title>
+        <title><%=destination.getDestinationName()%></title>
         <%@include file="../script.jsp" %>        
     </head>
     <body>
@@ -41,14 +44,14 @@
                                 <tbody>
                                     <tr>
                                         <td id="toolbar-apply" class="button">
-                                            <a class="toolbar" href="#" onclick="postCategory('adminform')">
+                                            <a class="toolbar" href="#" onclick="postDestination('adminform')">
                                                 <span title="Apply" class="icon-32-apply">
                                                 </span>
                                                     Cập nhật
                                             </a>
                                          </td>
                                          <td id="toolbar-cancel" class="button">
-                                            <a class="toolbar" href="<%= request.getContextPath()%>/category">
+                                            <a class="toolbar" href="<%= request.getContextPath()%>/destination">
                                                 <span title="Cancel" class="icon-32-cancel">
                                                 </span>
                                                     Hủy
@@ -59,7 +62,7 @@
                             </table>
                         </div>
                         <div class="header icon-48-article">
-                            Chỉnh sửa chủ đề
+                            Chỉnh sửa điểm du lịch
                         </div>
                         <%if(message!=null){%>
                             <dl id="system-message">
@@ -96,47 +99,59 @@
                         </div>
                      </div>
                      <div class="m">
-                         <form action="<%= request.getContextPath()%>/category" method="post" id="adminform" name="adminform">
+                         <form action="<%= request.getContextPath()%>/destination" method="post" id="adminform" name="adminform">
                              <table width="100%">
                                  <tr>
                                      <td width="7%">
-                                         <label>Tiêu đề :</label>
+                                         <label>Tên :</label>
                                      </td>
                                      <td>
-                                         <input id="title" type="text" name="title" value="<%=category.getCategoryName()%>" size="50" maxlength="255"/>
+                                         <input id="title" type="text" name="title" value="<%=destination.getDestinationName()%>" size="50" maxlength="255"/>
                                      </td>
                                  </tr>
                                  <tr>
                                      <td>
-                                         <label>Loại chủ đề :</label>
+                                         <label>Quốc gia :</label>
                                      </td>
                                      <td>
-                                         <select id="categorytype" name="categorytype" style="width: 150px">
-                                             <option value="0">- Chọn loại -</option>
-                                             <option value="1">Tin tức</option>
-                                             <option value="2">Du lịch</option>
+                                         <select id="nation" name="nation" style="width: 150px" onchange="getTown('nation')">
+                                             <option value="0">- Chọn quốc gia -</option>
+                                             <%
+                                                if(listnation!=null){
+                                                    for(int index=0;index<listnation.size();index++){%>
+                                                    <option value="<%=listnation.get(index).getNationId()%>"><%=listnation.get(index).getNationName()%></option>
+                                                        <%}
+                                                    }
+                                             %>
                                          </select>
-                                         <script type="text/javascript">
-                                             selectOption('categorytype',<%=category.getCategoryType()%>);
-                                         </script>
-
+                                         <%if(listtown!=null && listtown.size()>0){%>
+                                            <script type="text/javascript">
+                                                selectOption('nation',<%=listtown.get(0).getNationId()%>);
+                                            </script>
+                                         <%}%>
                                      </td>
                                  </tr>
                                  <tr>
                                      <td width="7%">
-                                         <label>Công khai :</label>
+                                         <label>Tỉnh/TP :</label>
                                      </td>
                                      <td>
-                                         <input type="radio" value="0" name="published" /><label>Ẩn</label>
-                                         <input type="radio" value="1" name="published" checked="checked"/><label>Hiện</label>
+                                         <select id="town" name="town" style="width: 150px">
+                                             <option value="0">- Chọn Tỉnh/TP -</option>
+                                         <%if(listtown!=null){
+                                             for(int index=0;index<listtown.size();index++){%>
+                                             <option value="<%=listtown.get(index).getTownId()%>"><%=listtown.get(index).getTownName()%></option>
+                                         <% }
+                                          }%>
+                                         </select>
                                          <script type="text/javascript">
-                                             selectRadio('published',<%=category.getCategoryPublished()%>);
+                                                selectOption('town',<%=destination.getTownId()%>);
                                          </script>
                                      </td>
                                  </tr>
                              </table>
                              <input type="hidden" value="update" name="action"/>
-                             <input type="hidden" value="<%=category.getCategoryId()%>" name="id"/>
+                             <input type="hidden" value="<%=destination.getDestinationId()%>" name="id"/>
                          </form>
                      </div>
                      <div class="b">
