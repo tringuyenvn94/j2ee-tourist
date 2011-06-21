@@ -2,6 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+function loadXMLDoc(url,cfunc){
+    if (window.XMLHttpRequest){
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+    }else{
+            // code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=cfunc;
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send(null);
+}
 
 function submitform(objid)
 {
@@ -198,4 +210,15 @@ function postDestination(formid){
         submitform(formid);
 }
 
+function getTown(obj){
+    var nationid=document.getElementById(obj).value;
+    var url="/tourist.com/ajaxadmin?action=gettowns&nationid="+nationid;
+    loadXMLDoc(url,rs_getTown);
+}
+function rs_getTown(){        
+    if (xmlhttp.readyState==4 && xmlhttp.status==200){        
+        var selectbox=document.getElementById("town");
+        selectbox.innerHTML=xmlhttp.responseText;
+    }
+}
 
