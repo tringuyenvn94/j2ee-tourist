@@ -37,6 +37,7 @@ public class Connector {
             {
                 DataSource datasource= (DataSource) new InitialContext().lookup("jdbc/tourist");
                 _conn=datasource.getConnection();
+                
             }
         }catch(Exception ex){
             _conn=null;
