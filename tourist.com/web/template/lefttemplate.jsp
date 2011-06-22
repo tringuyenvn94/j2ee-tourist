@@ -27,4 +27,3 @@
                             <h3 class="here">You are here:</h3>
                         </div>
                         
-                        <div id="main-content">

@@ -5,36 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--
-<script type="text/javascript">
-
-    var s1 = new SWFObject("http://www.1travel.com.vn/modules/mod_ltc_image_rotator/imagerotator.swf","rotator","921","160","7");
-
-    s1.addParam("allowfullscreen","true");
-
-    s1.addParam("wmode","transparent");
-    
-    s1.addVariable("file","http://www.1travel.com.vn/modules/mod_ltc_image_rotator/xmldata40.xml");
-    
-    s1.addVariable("width","921");
-
-    s1.addVariable("height","160");
-
-    s1.addVariable("screencolor","0xFFFFFF");
-
-    s1.addVariable("linkfromdisplay","false");
-
-    s1.addVariable("linktarget","_blank");		
-
-    s1.addVariable("shownavigation","false");		
-
-    s1.write("container40");
-
-</script>
-
-
--->
-
 
 
 <div id="top-header">
