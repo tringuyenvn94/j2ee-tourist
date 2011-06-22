@@ -1,0 +1,198 @@
+/* 
+    Document   : layout
+    Created on : Jun 22, 2011, 10:39:56 AM
+    Author     : Dung Nguyen
+    Description:
+        CSS for frontend
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/*********************************************************************************************************
+	general
+*********************************************************************************************************/
+
+/* reset */
+html, body, div, ul, ol, li, dl, dt, dd, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td
+{ margin: 0; padding: 0; }
+
+fieldset, img
+{ border: 0; }
+
+/* now we can start :) */
+html[xmlns]
+{ height: auto; padding-bottom : .01em; }
+
+body
+{ min-height: 100%; position: relative; font-size: 1em; color: #000; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  text-align: center; background: #8A950B url(/tourist.com/style/image/body.png) 0 0 repeat; }
+
+/* clearing
+****************************/
+/* you can find the ie clearing in the iefixes.css */
+.clearfix:after, #header:after, #content:after, div.content-modules:after, div.blog_row:after, ul.meta:after, .filter:after,
+.contentdescription:after, #footer:after, #main:after, .pagination:after
+{ content: "."; display: block; height: 0; line-height: 0; clear: both; visibility: hidden; }
+
+#ie_clearing { display: none }
+
+.clear
+{ clear:both; height: 0; line-height: 1px; }
+
+/*********************************************************************************************************
+	layout
+*********************************************************************************************************/
+
+/* page / shadow
+****************************/
+div#page-l
+{ max-width: 95%; min-width: 760px; padding: 0 0 0 3px; margin: 0 auto; text-align: left; font-size: 0.8em; 
+  line-height: 150%; background: #8A950B url(/tourist.com/style/image/shadow-left.png) left top repeat-y; width: 75em;}
+
+div#page-r
+{ padding: 0 3px 0 0; background: #fff url(/tourist.com/style/image/shadow-right.png) right top repeat-y; }
+
+div#page-b
+{ height: 3px; line-height: 0; margin: 0 auto; font-size: 1px /*ie*/; background: transparent url(/tourist.com/style/image/shadow-bottom.png) left bottom repeat-x; }
+
+
+/* top header
+		****************************/
+div#top-header
+{ position: relative; height: 95px; background: url(/tourist.com/style/image/top-header.png) left bottom repeat-x; border-bottom: 1px solid #fdee00; }
+
+div#top-header h1
+{ width: 240px; text-align: center; font-weight: bold; line-height: normal; margin: 0; padding: 0; color: #FFFFFF }
+
+div#top-header form
+{ position:absolute; top: 10px; right: 10px; }
+
+div#top-header form label
+{ position: absolute; top: -999em; left: -999em; }
+
+div#top-header form input
+{ border: 1px solid #D2DEF0; padding: 0.2em; }
+
+
+/* header
+		****************************/
+div#header
+{ height: 166px; font-size: 0.85em; line-height: 155%; border-bottom: 1px solid #fff; position: relative; }
+
+div#header div#topmod
+{ height: 175px; width: 950px; /*float: left;*/ position: absolute; top: 0; left: 0; background: #FFFFFF url(/tourist.com/style/image/topmod.png) 0 0 no-repeat; overflow: auto; }
+
+div#header div#topmod .article_separator
+{ display: none; }
+
+/* module layout -> template_css.css */
+
+
+
+/* main section / content
+		****************************/
+div#content
+{ padding: 0 0 3px 0; /* padding for the #page-r background */
+  background: url(/tourist.com/style/image/left-column.png) left top repeat-y; }
+
+body.right-col div#content,
+body.no-col div#content
+{ background: #fff; }
+
+
+/* left sidebar
+			****************************/
+div#content div#left-sidebar
+{ float: left; width: 240px; display: block }
+
+
+/* breadcrumb / pathway
+			****************************/
+div#content div#breadcrumb
+{ font-size: 0.85em; margin: 0 -10px 10px -9px; color: #fff; padding: 0.6em 0 0.5em 15px;
+  background: #FFFFFF url(/tourist.com/style/image/mod-normal.png) 0 0 repeat-y; overflow: hidden; }
+
+/* variable module layouts */
+body.no-col div#content div#breadcrumb,
+body.right-col div#content div#breadcrumb
+{ margin: 0 -10px 10px -10px; }
+
+/* opera padding fix */
+div#content div#breadcrumb.opera
+{ padding: 0.5em 0 0.45em 15px; }
+
+/* breadcrumb heading */
+div#content div#breadcrumb h3
+{ float: left; color: #fff; font-size: 1em; margin: 0 0.5em 0 0; text-transform: none; }
+
+/* breadcrumb list */
+div#content div#breadcrumb ul
+{ margin: 0; padding: 0; list-style: none; }
+
+div#content div#breadcrumb ul li
+{ float: left; margin: 0 0.5em 0 0; font-weight: bold; }
+
+/* breadcrumb links */
+div#content div#breadcrumb ul li a:link, div#content div#breadcrumb ul li a:visited
+{ font-weight: normal; color: #fff; background: url(/tourist.com/style/image/breadcrumb.gif) 100% 80% no-repeat; padding: 0 10px 0 0; }
+
+div#content div#breadcrumb ul li a:hover, div#content div#breadcrumb ul li a:active, div#content div#breadcrumb ul li a:focus
+{ color: #fff; text-decoration: none; }
+
+
+/* main content
+			****************************/
+div#content div#main
+{ margin: 0 10px 0 250px; line-height: 140%;}
+
+/* variable module layouts */
+body.right-col div#content div#main,
+body.no-col div#content div#main
+{ margin: 0 10px 0 10px; }
+
+div#content div#main div#main-content
+{ float: left; width: 68.7%; }
+
+/* variable module layouts */
+body.left-col div#content div#main div#main-content,
+body.no-col div#content div#main div#main-content
+{ width: 100%; }
+
+div#content div#main div#main-content div.content-modules
+{ margin: 0 0 0.5em 0; }
+
+div#content div#main div#main-content div.content-modules div.float1
+{ float: left; width: 49%; }
+
+div#content div#main div#main-content div.content-modules div.float2
+{ float: right; width: 49%; }
+
+
+/* right sidebar
+					****************************/
+div#content div#main div#right-sidebar
+{ margin: 0 0 0 70%; }
+
+
+/* footer
+				****************************/
+div#content div#footer
+{ font-size: 0.85em; color: #006633; margin: 1em 0 0 241px; padding: 1em;
+  background: #fff url(/tourist.com/style/image/footer.png) top left repeat-x; }
+
+/* variable module layouts */
+body.right-col div#content div#footer,
+body.no-col div#content div#footer
+{ margin: 1em 0 0 0;}
+
+div#content div#footer p
+{ margin: 0; float: right; }
+
+div#content div#footer p.copyright
+{ float: left; margin: 0;  }
+
+div#content div#footer p img
+{ vertical-align: middle; }
