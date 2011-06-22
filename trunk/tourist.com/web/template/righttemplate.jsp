@@ -3,10 +3,8 @@
     Created on : Jun 22, 2011, 6:50:54 PM
     Author     : Dung Nguyen
 --%>
-
-                        </div>
-                        
-                        <%@include file="/template/rightsidebar.jsp" %>
+                 
+                        <!--<%@include file="/template/rightsidebar.jsp" %>-->
                     </div>
 
                     <div id="ie_clearing"> </div>

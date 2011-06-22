@@ -42,13 +42,13 @@
         <h3>TOUR DU LỊCH</h3>
         <ul class="menu">
             <li class="first item5">
-                <a href="/index.php/tour-trong-nuoc.html"><span>Tour trong nước</span></a>
+                <a href="<%= request.getContextPath()%>/tour?id=2"><span>Tour trong nước</span></a>
             </li>
             <li class="item6">
-                <a href="/index.php/tour-nuoc-ngoai.html"><span>Tour nước ngoài</span></a>
+                <a href="<%= request.getContextPath()%>/tour?id=3"><span>Tour nước ngoài</span></a>
             </li>
             <li class="last item19">
-                <a href="/index.php/lich-khoi-hanh-tour.html"><span>Lịch khởi hành Tour</span></a>
+                <a href="#"><span>Lịch khởi hành Tour</span></a>
             </li>
         </ul>
     </div>

@@ -8,6 +8,12 @@
 <%@include file="/template/lefttemplate.jsp" %>
 
 
+<div id="main-content">
+    
+</div>
+
+<%@include file="/template/rightsidebar.jsp" %>
+
 <%@include file="/template/righttemplate.jsp" %>
                             
                         
