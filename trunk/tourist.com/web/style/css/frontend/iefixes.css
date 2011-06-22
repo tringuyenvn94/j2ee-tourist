@@ -1,0 +1,54 @@
+/* 
+    Document   : iefixes
+    Created on : Jun 22, 2011, 12:28:03 PM
+    Author     : Dung Nguyen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/* clearing (using hasLayout) */
+#content, #main, #header, #main-content, .content-modules, #right-sidebar, .module, .blog_row, .leading, .filter, .contentdescription, #breadcrumb, #footer,
+div.module, div.module-alt1, div.module-alt2, div.module_text, div.module div, div.module-alt1 div, div.module-alt2 div, div.module_text div 
+{ zoom:1; }
+
+#ie_clearing
+{ display:block; \clear:both; width: 100%; font-size:0; margin: -2px 0 -1em 0px; background: transparent; }
+
+* html div#content div#breadcrumb {
+    position: relative; margin: 0 -10px 10px -12px; 
+} 
+
+* html body.no-col div#content div#breadcrumb,
+* html body.right-col div#content div#breadcrumb
+{ margin: 0 -10px 10px -12px; }
+
+/*
+* html #page-l
+{ width: 75em; }
+*/
+
+* html div#top-header ul
+{ bottom: 14px; }
+
+* html table.items
+{ width: 99%; }
+
+* html div#content div#footer
+{ padding-bottom: 0.5em;}
+
+* html .tool-tip
+{ width: 200px; }
+h1, h2, h3, h4, h5, h6 /* all */
+{ font-weight:bold; font-family: Arial ,Verdana, Geneva, Helvetica, sans-serif; margin: 0; padding: 0; }
+
+h1, .componentheading { font-size: 1em; color: #006633; margin: 0 0 0.6em 0; padding: 0; line-height: normal; }
+h2 { font-size: 1em; color: #000000; margin: 0.2em 0 0.3em 0; padding: 0; line-height: 120%; }
+h3 { font-size: 1.1em; text-transform: uppercase; color: #006633; margin: 0.5em 0; padding: 0; font-weight: bold;}
+h4 { font-size: 1em; font-weight:bold; color: #000; margin: 0.2em 0 0.5em 0; padding: 0 0 0.2em 0; border-bottom: 1px solid #ddd; }
+h5 { font-size: 0.85em; color: #000; margin: 0.3em 0; font-weight: bold; text-transform: uppercase; }
+h6 { font-size: 1.1em; color: #666; margin: 0.2em 0; font-style:italic; }

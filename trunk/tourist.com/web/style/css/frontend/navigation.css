@@ -1,0 +1,89 @@
+/* 
+    Document   : navigation
+    Created on : Jun 22, 2011, 11:28:25 AM
+    Author     : Dung Nguyen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/*********************************************************************************************************
+	top navigation
+*********************************************************************************************************/
+/* why they are using the old markup from J! 1.0.x? whatever.. the css works with both menu markups ;) */
+div#top-header ul
+{ position: absolute; bottom: 15px; right: 20px; z-index: 120; margin: 0; padding: 0; }
+
+div#top-header ul li
+{ list-style: none; padding: 0; margin: 0; font-size: 0.89em; float: left; padding-left:8px; }
+
+div#top-header ul li a:link, div#top-header ul li a:visited
+{ float: left; /* ie 6 */ color: #000000; height: 1%; display: block; margin: 0 0.2em; padding: 0.5em 1.3em 0.2em 0.7em;
+  text-transform: uppercase; text-decoration: none; font-weight: bold;}
+
+div#top-header ul li a:hover
+{ color: #000; text-decoration: underline; }
+
+div#top-header ul li a:active, div#top-header ul li a:focus,
+div#top-header ul li a#active_menu-nav,
+div#top-header ul li.active a:link, div#top-header ul li.active a:visited, div#top-header ul li.active a:active, div#top-header ul li.active a:focus 
+{ color: #000000; background: #959F0B url(/tourist.com/style/image/menu-active.png) top center no-repeat; }
+
+/*********************************************************************************************************
+	left navigation
+*********************************************************************************************************/
+
+/* first level
+*************************/
+div#left-sidebar ul.menu
+{ font-size: 1em; color: #fff; margin: 0 -5px -5px -5px; padding: 0; list-style: none; border-top: solid 2px #959F0B; }
+
+div#left-sidebar .heading ul.menu /* menu with heading */
+{ margin: -5px; border: 0; }
+
+div#left-sidebar ul.menu li
+{ padding: 0; margin: 0; border-top: 1px solid #ECF0E5;}
+
+div#left-sidebar ul.menu li.first
+{ border: 0; }
+
+div#left-sidebar ul.menu li a:link, div#left-sidebar ul.menu li a:visited
+{ padding: 0.3em 0.5em; display: block; color: #006633; height: 1%; font-size: 0.8em; text-decoration: none; text-transform: uppercase; font-weight: bold; }
+
+div#left-sidebar ul.menu li a:hover
+{ color: #000; background-color: #ECF0E5; }
+
+div#left-sidebar ul.menu li a:active, div#left-sidebar ul.menu li a:focus,
+div#left-sidebar ul.menu li.active a:link, div#left-sidebar ul.menu li.active a:visited
+{ color: #000; background: #ECF0E5 url(/tourist.com/style/image/menu_left_active.gif) right center no-repeat; }
+
+
+/* second level
+*************************/
+div#left-sidebar ul.menu ul
+{ margin: 0; list-style: none; background: #ECF0E5; }
+
+div#left-sidebar ul.menu li li
+{ padding: 0 0 0 15px; border: 0; }
+
+div#left-sidebar ul.menu li.active li a:link, div#left-sidebar ul.menu li.active li a:visited
+{ background: #ECF0E5 url(/tourist.com/style/image/menu_sub_left.gif) 0 55% no-repeat; color: #006633; padding: 0.2em 0.5em 0.2em 10px; font-size: 0.85em; font-weight: normal; text-transform: none; }
+
+div#left-sidebar ul.menu li.active li a:hover, div#left-sidebar ul.menu li.active li a:active, div#left-sidebar ul.menu li.active li a:focus,
+div#left-sidebar ul.menu li.active li.active a:link, div#left-sidebar ul.menu li.active li.active a:visited
+{ color: #000; background-image: url(/tourist.com/style/image/menu_sub_left_active.gif); }
+
+
+/* third level
+*************************/
+/* same list settings as the second level */
+div#left-sidebar ul.menu li.active li.active li a:link, div#left-sidebar ul.menu li.active li.active li a:visited
+{ background: #ECF0E5 url(/tourist.com/style/image/menu_subsub_left.gif) 0 50% no-repeat; color: #006633; padding: 0.1em 0.5em 0.1em 10px; }
+
+div#left-sidebar ul.menu li.active li.active li a:hover,	div#left-sidebar ul.menu li.active li.active li a:active, div#left-sidebar ul.menu li.active li.active li a:focus,
+div#left-sidebar ul.menu li.active li.active li.active a:link, div#left-sidebar ul.menu li.active li.active li.active a:visited
+{ color: #000; background-image: url(/tourist.com/style/image/menu_subsub_left_active.gif); }

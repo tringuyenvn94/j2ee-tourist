@@ -1,0 +1,502 @@
+/* 
+    Document   : template
+    Created on : Jun 22, 2011, 11:15:08 AM
+    Author     : Dung Nguyen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/*********************************************************************************************************
+	content
+*********************************************************************************************************/
+
+/* links
+****************************/
+a:link, a:visited
+{ color: #006633; text-decoration: none; }
+
+a:hover, a:focus, a:active
+{ color: #000; text-decoration: none; }
+
+a.contentpagetitle:link, a.contentpagetitle:visited
+{ color: #000; text-decoration: none; }
+
+a.contentpagetitle:hover, a.contentpagetitle:focus, a.contentpagetitle:active
+{ color: #006633; }
+
+a.readon:link, a.readon:visited
+{ display: block; text-align: right; height: 1%; font-weight: bold; color: #006633; font-size: 12px;
+  background: #fff url(/tourist.com/style/image/readon.gif) 100% 55% no-repeat; padding: 0 20px 0 0; margin: 0.2em 0; }
+
+a.readon:hover, a.readon:focus, a.readon:active
+{ color: #000; }
+
+/* paragraphs
+****************************/
+p
+{ margin: 0 0 0.8em 0; }
+
+/* images
+****************************/
+img
+{ border: 0; }
+
+/* lists (global)
+****************************/
+ul, ol, dl
+{ margin: 0 0 1em 1em; }
+
+/* list items
+****************************/
+li
+{ margin: 0 0 0.3em 1.5em; }
+
+/* definition list
+****************************/
+dt /* definition term */
+{ font-weight: bold; margin: 1em 0 0.3em 0; }
+
+dd /* definition description */
+{ margin: 0 0 0 1.8em; }
+
+/* misc
+****************************/
+strong
+{ color: #006633; font-weight: bold; font-size:12px !important;}
+
+em
+{ font-style: italic; }
+
+pre, code
+{ font-size: 0.85em; font-family: Arial ,Verdana, Geneva, Helvetica, sans-serif; display:block; margin: 0 0 1em 1em;
+  padding: 0.5em; color: #56636f; background: #F0F3EB; border: 1px dotted #D6DAA0; }
+
+
+/* headings
+****************************/
+h1, h2, h3, h4, h5, h6 /* all */
+{ font-weight:bold; font-family: Arial ,Verdana, Geneva, Helvetica, sans-serif; margin: 0; padding: 0; }
+
+h1, .componentheading { font-size: 1em; color: #006633; margin: 0 0 0.6em 0; padding: 0; line-height: normal; }
+h2 { font-size: 1em; color: #000000; margin: 0.2em 0 0.3em 0; padding: 0; line-height: 120%; }
+h3 { font-size: 1.1em; text-transform: uppercase; color: #006633; margin: 0.5em 0; padding: 0; font-weight: bold;}
+h4 { font-size: 1em; font-weight:bold; color: #000; margin: 0.2em 0 0.5em 0; padding: 0 0 0.2em 0; border-bottom: 1px solid #ddd; }
+h5 { font-size: 0.85em; color: #000; margin: 0.3em 0; font-weight: bold; text-transform: uppercase; }
+h6 { font-size: 1.1em; color: #666; margin: 0.2em 0; font-style:italic; }
+
+
+/*********************************************************************************************************
+	boxes
+*********************************************************************************************************/
+.greenbox, .darkgreenbox, .orangebox, .cyanbox
+{ padding: 0.5em; margin: 0 0 1em 0; border: 1px solid #DDDDDD; border-top-width: 3px; background-color: #F0F3EB; } 
+
+.greenbox     { border-top-color: #E85C00; }
+.darkgreenbox { border-top-color: #006633; }
+.orangebox    { border-top-color: #E85C00; }
+.cyanbox      { border-top-color: #B8CBE7; }
+
+.greenbox p, .darkgreenbox p, .orangebox p, .cyanbox p
+{ margin: 0 0 0.5em 0; border: 0; } 
+
+/* icon boxes
+****************/
+.accept, .arrow, .download, .flag, .info, .link, .note, .question, .stop, .warning
+{ padding: 0.2em 0.2em 0.2em 30px; border: 1px solid #D6DAA0; border-left-width: 0; border-right-width: 0; background-position: 5px 50%; background-repeat: no-repeat; }
+
+.accept   { background-image: url(/tourist.com/style/image/accept.gif); }
+.arrow    { background-image: url(/tourist.com/style/image/readon.gif); }
+.download { background-image: url(/tourist.com/style/image/download.gif); }
+.flag     { background-image: url(/tourist.com/style/image/flag.gif); }
+.info     { background-image: url(/tourist.com/style/image/meta.gif); }
+.link     { background-image: url(/tourist.com/style/image/url.gif); }
+.note     { background-image: url(/tourist.com/style/image/note.gif); }
+.question { background-image: url(/tourist.com/style/image/question.gif); }
+.stop     { background-image: url(/tourist.com/style/image/stop.gif); }
+.warning  { background-image: url(/tourist.com/style/image/warning.gif); }
+
+
+/*********************************************************************************************************
+	modules
+*********************************************************************************************************/
+
+/* top module
+****************************/
+div#header div#topmod div.moduletable
+{ margin: 5px 5px 5px 15px; }
+
+div#header div#topmod div.moduletable h3
+{ font-size: 1.6em; color: #000000; text-transform: none; margin: 0.5em 0 0.3em 0;  
+  font-family: Arial ,Verdana, Geneva, Helvetica, sans-serif ; font-weight: bold;}
+
+/* left modules
+****************************/
+div#content div#left-sidebar div.moduletable,
+div#content div#left-sidebar div.moduletable-alt1,
+div#content div#left-sidebar div.moduletable-alt2,
+
+div#content div#left-sidebar div.moduletable_menu
+{ padding: 0 5px 5px 15px; background: #E3E9DA url(/tourist.com/style/image/mod-bg.png) 0 0 repeat-y; border-bottom: 1px solid #fff; }
+
+/* module headings */
+div#content div#left-sidebar div.moduletable h3,
+div#content div#left-sidebar div.moduletable-alt1 h3,
+div#content div#left-sidebar div.moduletable-alt2 h3,
+div#content div#left-sidebar div.moduletable_menu h3
+{ font-size: 0.9em; color: #000000; font-weight: bold; margin: 0 -5px 5px -15px; padding: 0.7em 0 0.2em 15px; 
+  background: #fdee00 url(/tourist.com/style/image/mod-alt2.png) 0 0 repeat-y; }
+
+/* alternative 1 */
+div#content div#left-sidebar div.moduletable-alt1 h3
+{ background: #006633 url(/tourist.com/style/image/mod-normal.png) 0 0 repeat-y; }
+
+/* alternative 2 */
+div#content div#left-sidebar div.moduletable-alt2 h3
+{ background: #959F0B url(/tourist.com/style/image/mod-alt1.png) 0 0 repeat-y; }
+
+/* right modules (standard)
+******************************************/
+/* standard */
+div.module
+{ margin: 0 0 1em 0; padding: 0; border-bottom: 1px solid #B8CBE7; background: url(/tourist.com/style/image/r-m_rt.png) right top no-repeat; }
+
+div.module div
+{ padding: 0.5em; background: url(/tourist.com/style/image/r-m_lt.png) left top no-repeat; position: relative; }
+
+/* alternative 1 */
+div.module-alt1
+{ margin: 0 0 1em 0; padding: 0; border-bottom: 1px solid #D6DAA0; background: url(/tourist.com/style/image/r-m_rt_alt1.png) right top no-repeat; }
+
+div.module-alt1 div
+{ padding: 0.5em; background: url(/tourist.com/style/image/r-m_lt_alt1.png) left top no-repeat; position: relative; }
+
+/* alternative 2 */
+div.module-alt2, div.module_text
+{ margin: 0 0 1em 0; padding: 0; border-bottom: 1px solid #ddd; background: url(/tourist.com/style/image/r-m_rt_alt2.png) right top no-repeat; }
+
+div.module-alt2 div, div.module_text div
+{ padding: 0.5em; background: url(/tourist.com/style/image/r-m_lt_alt2.png) left top no-repeat; position: relative; }
+
+
+/* reset for following divs in the module */
+div.module div div,
+div.module-alt1 div div,
+div.module-alt2 div div,
+div.module_text div div
+{ padding: 0; background: none; }
+
+/* module headings */
+div.module h3,
+div.module-alt1 h3,
+div.module-alt2 h3,
+div.module-alt3 h3,
+div.module_text h3
+{ font-size: 0.8em; color: #000; margin: 0 0 0.3em 0; font-weight: bold; border-bottom: 1px solid #B8CBE7; letter-spacing: 0.08em; }
+
+div.module-alt1 h3
+{ border-color: #D6DAA0; }
+
+div.module-alt2 h3, div.module_text h3
+{ border-color: #ddd; }
+
+
+/* right modules (modern)
+******************************************/
+body.modern div.module,
+body.modern div.module-alt1,
+body.modern div.module-alt2,
+body.modern div.module-alt3,
+body.modern div.module_text
+{ margin: 0 0 1em 0; padding: 1px; border: 1px solid #D6DAA0; position: relative; background: transparent; }
+
+body.modern div.module div,
+body.modern div.module-alt1 div,
+body.modern div.module-alt2 div,
+body.modern div.module-alt3 div,
+body.modern div.module_text div
+{ padding: 5px; background: transparent; }
+
+/* module headings */
+body.modern div.module h3,
+body.modern div.module-alt1 h3,
+body.modern div.module-alt2 h3,
+body.modern div.module-alt3 h3,
+body.modern div.module_text h3
+{ background-position: 0 0; background-repeat: repeat-x; padding: 0.4em; margin: -5px -5px 0.5em -5px; border: 0; font-size: 0.95em; }
+
+body.modern div.module h3
+{ background-image: url(/tourist.com/style/image/modules/darkgreen.png); background-color: #006633; color: #fff; }
+
+body.modern div.module-alt1 h3
+{ background-image: url(/tourist.com/style/image/modules/green.png); background-color: #959F0B; color: #fff; }
+
+body.modern div.module-alt2 h3
+{ background-image: url(/tourist.com/style/image/modules/cyan.png); background-color: #B8CBE7; color: #006633; }
+
+body.modern div.module-alt3 h3,
+body.modern div.module_text h3
+{ background-image: url(/tourist.com/style/image/modules/orange.png); background-color: #E85C00; color: #fff; }
+
+/* banner module
+****************/
+
+
+/* login module
+****************/
+#form-login fieldset
+{ border: none; }
+
+#form-login fieldset p
+{ margin: 0; }
+
+#form-login fieldset input
+{ border: 1px solid #B8CBE7; padding: 0.2em; }
+
+input.button
+{ cursor: pointer; border: 1px solid #B8CBE7; background: #fff; margin: 0.2em; padding: 0.2em; }
+
+#form-login fieldset label
+{ font-size: 0.85em; cursor: pointer; }
+
+#form-login ul
+{ font-size: 0.85em; margin: 0.5em 0; }
+
+#form-login ul li
+{ margin-bottom: 0.1em;  }
+
+/*********************************************************************************************************
+	com_content (blog, articles, tables, ...)
+*********************************************************************************************************/
+
+/* blog layout
+****************************/
+.blog_row, .leading, .articlecontent
+{ margin: 0 0 1em 0; background: #fff url(/tourist.com/style/image/leading.png) left top repeat-x; border-top: solid 2px #959F0B; padding: 0.5em; }
+
+.blog_row, .articlecontent
+{ background-image: url(/tourist.com/style/image/blog_row.png); border-color: #ddd; }
+
+.article /* printview fonts */
+{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; }
+
+/* 1 column
+	****************/
+.cols1 .col0
+{ margin: 0 0 1em 0; }
+
+/* 2 columns
+	****************/
+.cols2 .col0,
+.cols2 .col1
+{ float: left; width: 48%; }
+
+.cols2 .col1
+{ float: right; }
+
+/* 3 columns
+	****************/
+.cols3 .col0,
+.cols3 .col1,
+.cols3 .col2
+{ float: left;  width: 32%; }
+
+.cols3 .col0
+{ margin: 0 2% 0 0;}
+
+.cols3 .col2
+{ float: right; margin: 0; }
+
+/* descriptions
+****************************/
+div.contentdescription
+{ margin: 0 0 1em 0; }
+
+div.contentdescription div.description_image
+{ margin: 0.5em; padding: 1px; border: 1px solid #D6DAA0; }
+
+/* article meta
+****************************/
+ul.meta
+{ margin: 0 0 0.5em 0; padding: 0; list-style: none; }
+
+ul.meta li
+{ padding: 0 0 0 20px; margin: 0 0.5em 0.2em 0; line-height: 140%; background: transparent url(/tourist.com/style/image/meta.gif) left center no-repeat; }
+
+div.blog ul.meta li
+{ line-height: 130%; }
+
+/* icons made by Mark James - www.famfamfam.com */
+ul.meta li.createdate { background-image: url(/tourist.com/style/image/createdate.gif); }
+ul.meta li.modifydate { background-image: url(/tourist.com/style/image/editdate.gif); }
+ul.meta li.author     { background-image: url(/tourist.com/style/image/author.gif); }
+ul.meta li.category   { background-image: url(/tourist.com/style/image/category.gif); }
+ul.meta li.url        { background-image: url(/tourist.com/style/image/url.gif); }
+
+ul.meta li small
+{ font-size: 0.85em; }
+
+/* article options
+****************************/
+ul.buttonheading
+{ float: right; list-style: none; }
+
+.noheading ul.buttonheading /* articles without heading */
+{ margin-top: 1em; }
+
+ul.buttonheading li
+{ float: left; margin: 0 0.2em; }
+
+
+/*********************************************************************************************************
+	com_search
+*********************************************************************************************************/
+.searchintro, .search_only
+{ margin: 1em 0; }
+
+div.search_phrase
+{ margin: .5em 0; }
+
+.highlight
+{ font-weight: bold; color: #E85C00; }
+
+ol.search_results
+{ }
+
+ol.search_results li.result
+{ margin:0 0 1em 1.5em; padding: 0.5em; background: #fff url(/tourist.com/style/image/blog_row.png) left top repeat-x; border-top: solid 2px #959F0B; }
+
+
+/*********************************************************************************************************
+	com_poll
+*********************************************************************************************************/
+
+div.poll h3
+{ margin: 1em 0 0 0; }
+
+table.poll_table .votes
+{ width: 20%; }
+
+table.poll_table thead th
+{ background-image: url(/tourist.com/style/image/blog_row.png); font-size: 0.85em; }
+
+/* module poll */
+form.poll ol
+{ margin: 0; padding: 0; list-style: none; }
+
+form.poll ol li
+{ margin: 0.2em 0; }
+
+form.poll .buttons
+{ text-align: center; margin: 0.5em 0; }
+
+
+/*********************************************************************************************************
+	joomla general
+*********************************************************************************************************/
+
+/* category list
+****************************/
+ul.categories li
+{ margin-bottom: 1em }
+
+ul.categories li h3 small
+{ color: #000; text-transform: none; }
+
+/* item table
+****************************/
+/* filter */
+div.filter
+{ font-size: 0.85em; color: #006633; }
+
+div.filter div.text, div.filter div.page
+{ margin: 0 0.5em; float: right; }
+
+/* table */
+table.items, 
+div.contentpane table
+{ width: 99.9%; border-collapse: collapse; border: 1px solid #D6DAA0; margin: 1em 1px;}
+
+table.items .sectiontableentry1, 
+div.contentpane table .sectiontableentry1
+{ background: #E3E9DA; }
+
+table.items th, table.items td, td.sectiontableentry0, td.sectiontableentry1,
+div.contentpane table th, div.contentpane table td
+{color: #000; padding: 0.5em; border-right: 1px solid #D6DAA0; border-top: 1px solid #D6DAA0; text-align: left; }
+
+table.items th, td.sectiontableheader
+{ background: #fff url(/tourist.com/style/image/leading.png) left center repeat-x; color: #006633; font-weight: bold; 
+  padding: 0.5em; margin: 0; text-align: left; }
+
+table.items tfoot th, 
+table.items td
+{ font-size: 0.85em; }
+
+table.items td.title
+{ font-size: 1em; }
+
+/* blogmore
+****************************/
+div.blog_more
+{ margin: 1em 0; border-top: #D6DAA0 solid 2px; }
+
+/* pagination
+****************************/
+.counter, .pagenavcounter
+{ font-weight: bold; margin: 0 0 0.5em 0;}
+
+ul.pagination
+{ list-style: none; margin: 0; padding: 0; }
+
+ul.pagination li
+{ margin: 0; padding: 0; font-size: 0.85em; float: left; }
+
+ul.pagination li a, ul.pagination li span
+{ float: left; margin: 0.2em 0.2em 0.2em 0; padding: 0.2em 0.5em; border: 1px solid #D6DAA0; text-decoration: none; }
+
+ul.pagination li.aktiv span
+{ border-color: #006633; color: #000; }
+
+ul.pagination li.aktiv span strong
+{ color: #000; }
+
+/* Tooltips
+****************************/
+.tool-tip
+{ float: left; background: #ffc; border: 1px solid #D4D5AA;	padding: 5px; max-width: 200px; font-size: 0.7em; text-align: left;}
+
+.tool-title
+{ padding: 15px 0 5px 0; margin: -15px 0 0 0; font-weight: bold; background: url(../../system/images/selector-arrow.png) no-repeat;}
+
+.tool-text
+{ font-size: 100%; margin: 0; }
+
+.contentpaneopen_edit
+{ margin: 10px 5px 0 0; }
+.menu
+{
+    margin-left:-20px;
+}
+#footer
+{
+    margin-left:150px;
+}
+#langselect
+{
+    overflow: visible; 
+    display: inline-block; 
+    position: relative;    
+    left:855px; 
+    top: -90px; 
+    z-index: 10000;
+    height:0;
+}
+#langselect img
+{
+    padding-right:10px;
+}
