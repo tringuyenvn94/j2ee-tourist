@@ -4,7 +4,7 @@
     Author     : Dung Nguyen
 --%>
                  
-                        <!--<%@include file="/template/rightsidebar.jsp" %>-->
+                        <%--<%@include file="/template/rightsidebar.jsp" %>--%>
                     </div>
 
                     <div id="ie_clearing"> </div>
