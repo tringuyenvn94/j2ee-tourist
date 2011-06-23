@@ -222,3 +222,10 @@ function rs_getTown(){
     }
 }
 
+////////////////////
+/// Registration
+////////////////////
+function postRegister(formid){    
+    submitform(formid);
+}
+
