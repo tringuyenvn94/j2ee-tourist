@@ -1,25 +1,25 @@
 <%-- 
-    Document   : category
-    Created on : Jun 16, 2011, 4:49:41 PM
+    Document   : registertour
+    Created on : Jun 22, 2011, 10:13:49 AM
     Author     : VANGANH
 --%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="tourist.entities.ListCategory" %>
-<%@page import="java.util.List"%>
+<%@page import="tourist.entities.ListRegistration" %>
+<%@page import="tourist.entities.ListTourist" %>
+<%@page import="tourist.business.Utility"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
 <%
-    ListCategory listcategory=(ListCategory)request.getAttribute("listcategory");
-    List<String> listcategorytype=(List<String>)request.getAttribute("listcategorytype");
+    ListRegistration listregistration=(ListRegistration)request.getAttribute("listregistration");
+    ListTourist listtourist=(ListTourist)request.getAttribute("listtourist");
     String message=(String)request.getAttribute("message");
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Quản lý chủ đề</title>
+        <title>Quản lý đăng ký tour</title>
         <%@include file="../script.jsp" %>
     </head>
     <body>
@@ -34,23 +34,8 @@
                         </div>
                     </div>
                     <div class="m">
-                        <div id="toolbar" class="toolbar">
-                            <table class="toolbar">
-                                <tbody>
-                                    <tr>
-                                        <td id="toolbar-new" class="button">
-                                            <a class="toolbar" href="<%= request.getContextPath()%>/category?action=post">
-                                                <span title="New" class="icon-32-new">
-                                                </span>
-                                                    Thêm mới
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                         <div class="header icon-48-article">
-                            Quản lý chủ đề
+                            Quản lý điểm du lịch
                         </div>
                         <%if(message!=null){%>
                             <dl id="system-message">
@@ -89,29 +74,27 @@
                          <table class="tbstyle">
                              <tr class="tbhead">
                                  <th nowrap="nowrap" width="3%">#</th>
-                                 <th><a href="#">Tên chủ đề</a></th>
-                                 <th nowrap="nowrap" width="15%"><a href="#">Loại</a></th>
-                                 <th nowrap="nowrap" width="5%"><a href="#">Công khai</a></th>
-                                 <th nowrap="nowrap" width="5%"><a href="#">Mã chủ đề</a></th>
+                                 <th><a href="#">Người đăng ký</a></th>
+                                 <th nowrap="nowrap" width="35%"><a href="#">Chương trình Tour</a></th>
+                                 <th nowrap="nowrap" width="20%"><a href="#">Email</a></th>
+                                 <th nowrap="nowrap" width="10%"><a href="#">Số điện thoại</a></th>
+                                 <th nowrap="nowrap" width="10%"><a href="#">Ngày đăng</a></th>
+                                 <th nowrap="nowrap" width="5%"><a href="#">Đã duyệt</a></th>
                                  <th nowrap="nowrap" width="5%"><a href="#">Xóa</a></th>
                              </tr>
                              <%
-                                if(listcategory!=null && listcategorytype!=null && listcategory.size()==listcategorytype.size()){
-                                    for(int index=0;index<listcategory.size();index++){%>
+                                if(listregistration!=null && listtourist!=null && listregistration.size()==listtourist.size()){
+                                    for(int index=0;index<listregistration.size();index++){%>
                                     <tr>
                                         <td align="center"><%=index+1%></td>
-                                        <td><a href="<%= request.getContextPath()%>/category?action=edit&id=<%=listcategory.get(index).getCategoryId()%>"><%=listcategory.get(index).getCategoryName()%></a></td>
-                                        <td><%=listcategorytype.get(index)%></td>
+                                        <td><a href="<%= request.getContextPath()%>/registertour?action=edit&id=<%=listregistration.get(index).getRegistrationId()%>"><%=listregistration.get(index).getRegistrationUserName()%></a></td>
+                                        <td><%=listtourist.get(index).getTouristTitle()%></td>
+                                        <td><%=listregistration.get(index).getRegistrationUserEmail()%></td>
+                                        <td align="center"><%=listregistration.get(index).getRegistrationUserPhone()%></td>
+                                        <td align="center"><%=Utility.parseDateToString(listregistration.get(index).getRegistrationDate(),"dd/MM/yyyy")%></td>
+                                        <td align="center"><%=listregistration.get(index).getRegistrationApproved()%></td>
                                         <td align="center">
-                                            <%if(listcategory.get(index).getCategoryPublished()==0){%>
-                                                    <img alt="Ẩn"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-unpublish.png" width="16" height="16" border="0"/>
-                                                 <%}else{%>
-                                                 <img alt="Hiện"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-publish.png" width="16" height="16" border="0"/>
-                                                <%}%>
-                                        </td>
-                                        <td align="center"><%=listcategory.get(index).getCategoryId()%></td>
-                                        <td align="center">
-                                            <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listcategory.get(index).getCategoryId()%>)">
+                                            <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listregistration.get(index).getRegistrationId()%>)">
                                                 <img alt="Xóa"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-remove.jpg" width="16" height="16" border="0"/>
                                             </a>
                                         </td>
@@ -120,7 +103,7 @@
                                 }
                             %>
                          </table>
-                         <form action="<%= request.getContextPath()%>/category" method="post" id="adminform" name="adminform">
+                         <form action="<%= request.getContextPath()%>/registertour" method="post" id="adminform" name="adminform">
                              <input id="id" name="id" type="hidden" value=""/>
                              <input name="action" type="hidden" value="del"/>
                          </form>

@@ -42,13 +42,13 @@
             </a>
             <ul class="level2">
                 <li class="item60">
-                    <a href="<%= request.getContextPath()%>/tourist" class="item">
+                    <a href="<%= request.getContextPath()%>/registertour" class="item">
                         <span>Đăng ký tour</span>
                     </a>					
                 </li>
                 <li class="item62">
                     <a href="#" class="item">
-                        <span>Khách hàng bình luận</span>
+                        <span>Bình luận</span>
                     </a>
                 </li>                          
             </ul>
