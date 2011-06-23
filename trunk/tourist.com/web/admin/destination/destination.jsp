@@ -7,12 +7,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="tourist.entities.ListDestination" %>
+<%@page import="tourist.entities.ListTown" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
     ListDestination listdestination=(ListDestination)request.getAttribute("listdestination");
+    ListTown listtown=(ListTown)request.getAttribute("listtown");
 %>
 <html>
     <head>
@@ -74,12 +76,12 @@
                                  <th nowrap="nowrap" width="5%"><a href="#">Xóa</a></th>
                              </tr>
                              <%
-                                if(listdestination!=null){// && listcategorytype!=null && listcategory.size()==listcategorytype.size()){
+                                if(listdestination!=null && listtown!=null && listdestination.size()==listtown.size()){// && listcategorytype!=null && listcategory.size()==listcategorytype.size()){
                                     for(int index=0;index<listdestination.size();index++){%>
                                     <tr>
                                         <td align="center"><%=index+1%></td>
                                         <td><a href="<%= request.getContextPath()%>/destination?action=edit&id=<%=listdestination.get(index).getDestinationId()%>"><%=listdestination.get(index).getDestinationName()%></a></td>
-                                        <td><%=listdestination.get(index).getTownId()%></td>
+                                        <td><%=listtown.get(index).getTownName()%></td>
                                         <td align="center"><%=listdestination.get(index).getDestinationId()%></td>
                                         <td align="center">
                                             <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listdestination.get(index).getDestinationId()%>)">

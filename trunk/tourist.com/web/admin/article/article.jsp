@@ -105,7 +105,13 @@
                                             <td><a href="<%= request.getContextPath()%>/article?action=edit&id=<%=listarticle.get(index).getArticleId()%>"><%=listarticle.get(index).getArticleTitle()%></a></td>
                                             <td><%=listcategory.get(index).getCategoryName()%></td>
                                             <td align="center"><%=Utility.parseDateToString(listarticle.get(index).getArticleDate(), "dd/MM/yyyy")%></td>
-                                            <td align="center"><%=listarticle.get(index).getArticlePublished()%></td>
+                                            <td align="center">
+                                                <%if(listarticle.get(index).getArticlePublished()==0){%>
+                                                    <img alt="Ẩn"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-unpublish.png" width="16" height="16" border="0"/>
+                                                 <%}else{%>
+                                                 <img alt="Hiện"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-publish.png" width="16" height="16" border="0"/>
+                                                <%}%>
+                                            </td>
                                             <td align="center"><%=listarticle.get(index).getArticleId()%></td>
                                             <td align="center">
                                                 <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listarticle.get(index).getArticleId()%>)">
