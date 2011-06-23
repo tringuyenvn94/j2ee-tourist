@@ -8,19 +8,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import tourist.business.TouristService;
 import tourist.business.Utility;
 import tourist.entities.ListTourist;
-import tourist.entities.Tourist;
 
 /**
  *
  * @author Dung Nguyen
  */
-public class tour extends HttpServlet {
+@WebServlet(name = "index", urlPatterns = {"/index"})
+public class index extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,15 +40,24 @@ public class tour extends HttpServlet {
             if (action != null) {
                 ListAction enumaction = ListAction.valueOf(action);
                 switch (enumaction) {
-                    case detail:
-                        actionDetail(request, response);
+                    case introduction:
+                        actionIntroduction(request, response);
+                        break;
+                    case rule:
+                        actionRule(request, response);
+                        break;
+                    case order:
+                        actionOrder(request, response);
+                        break;
+                    case contact:
+                        actionContact(request, response);
                         break;
                     default:
                         actionGetList(request, response);
                         break;
                 }
             } else {
-                this.actionGetList(request, response);
+                actionGetList(request, response);
             }
         } finally {
             out.close();
@@ -91,27 +101,36 @@ public class tour extends HttpServlet {
     }// </editor-fold>
     
     protected void actionGetList(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String cattegory = request.getParameter("id");
-        
-        ListTourist listTourist = TouristService.getListTouristByCategory(Integer.parseInt(cattegory), 1, Utility.pagesize, Long.valueOf(0));
-        
+            throws ServletException, IOException {        
+        // get all lastest tourist
+        ListTourist listTourist = TouristService.getListTouristByLastest(Utility.pagesize);
         request.setAttribute("listtourist", listTourist);
         
-        String url="./frontend/tour/tour.jsp";
+        String url="./frontend/index.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
     
-    protected void actionDetail(HttpServletRequest request, HttpServletResponse response)
+    protected void actionIntroduction(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-                
-        Tourist tourist = TouristService.getTourist(Long.parseLong(id));
         
-        request.setAttribute("tourist", tourist);
+    }
+    
+    protected void actionRule(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         
-        String url="./frontend/tour/detail.jsp";
+    }
+    
+    protected void actionOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String url="./frontend/order.jsp";
+        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+        reqdisparcher.forward(request, response);
+    }
+    
+    protected void actionContact(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String url="./frontend/contact.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }

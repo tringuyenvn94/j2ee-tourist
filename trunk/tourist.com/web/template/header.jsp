@@ -12,12 +12,12 @@
         <img title="Travel" alt="Travle" src="<%= request.getContextPath()%>/style/image/logo.gif"/>
     </h1>
     <ul class="menu">
-        <li class="first item1" id="current"><a href="<%= request.getContextPath()%>/jsp/mainpage.jsp"><span>TRANG CHỦ</span></a></li>
-        <li class="item2"><a href=""><span>GIỚI THIỆU</span></a></li>
-        <li class="item3"><a href=""><span>TIN TỨC</span></a></li>
-        <li class="item16"><a href=""><span>CHÍNH SÁCH BÁN TOUR</span></a></li>
-        <li class="item15"><a href=""><span>ĐẶT TOUR TRỰC TUYẾN</span></a></li>
-        <li class="last item14"><a href=""><span>LIÊN HỆ</span></a></li>
+        <li class="first item1" id="current"><a href="<%= request.getContextPath()%>/index"><span>TRANG CHỦ</span></a></li>
+        <li class="item2"><a href="<%= request.getContextPath()%>/index?action=introduction"><span>GIỚI THIỆU</span></a></li>
+        <li class="item3"><a href="<%= request.getContextPath()%>/news"><span>TIN TỨC</span></a></li>
+        <li class="item16"><a href="<%= request.getContextPath()%>/index?action=rule"><span>CHÍNH SÁCH BÁN TOUR</span></a></li>
+        <li class="item15"><a href="<%= request.getContextPath()%>/index?action=order"><span>ĐẶT TOUR TRỰC TUYẾN</span></a></li>
+        <li class="last item14"><a href="<%= request.getContextPath()%>/index?action=contact"><span>LIÊN HỆ</span></a></li>
     </ul>
 </div>
 

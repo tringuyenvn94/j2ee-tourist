@@ -1,12 +1,11 @@
 <%-- 
-    Document   : tour
-    Created on : Jun 22, 2011, 7:53:37 PM
+    Document   : index
+    Created on : Jun 23, 2011, 7:20:15 PM
     Author     : Dung Nguyen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="tourist.entities.ListTourist" %>
-
 <%@include file="/template/lefttemplate.jsp" %>
 
 
@@ -15,7 +14,7 @@
 %>
 
 
-<div id="main-content" style="width: 100%">
+<div id="main-content">
     <div class="blog catblog">
         <%
             if (listtourist != null) {
@@ -79,8 +78,7 @@
         %>
     </div>
 </div>
-
-
-
+        
+<%@include file="/template/rightsidebar.jsp" %>
 
 <%@include file="/template/righttemplate.jsp" %>
