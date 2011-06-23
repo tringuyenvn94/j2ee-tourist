@@ -103,7 +103,8 @@ public class index extends HttpServlet {
     protected void actionGetList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
         // get all lastest tourist
-        ListTourist listTourist = TouristService.getListTouristByLastest(Utility.pagesize);
+        //ListTourist listTourist = TouristService.getListTouristByLastest(Utility.pagesize);
+        ListTourist listTourist = TouristService.getListTouristByLastest(4);
         request.setAttribute("listtourist", listTourist);
         
         String url="./frontend/index.jsp";
