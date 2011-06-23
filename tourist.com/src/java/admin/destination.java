@@ -119,15 +119,19 @@ public class destination extends HttpServlet {
     }// </editor-fold>
 
     private void actionGetList(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException{
+            throws ServletException, IOException{
         String strpage=request.getParameter("page");
         Integer currpage=1;
         if(strpage!=null)
            currpage =Integer.valueOf(strpage);
         Long totalrecord=Long.valueOf(0);
         ListDestination listdestination=DestinationService.getListDestination(currpage, Utility.pagesizeadmin, totalrecord);
-        
-        request.setAttribute("listdestination", listdestination);        
+        ListTown listtown=null;
+        if(listdestination!=null){
+            listtown=TownService.getListTown(listdestination);
+        }
+        request.setAttribute("listdestination", listdestination);
+        request.setAttribute("listtown", listtown);
 
         String url="./admin/destination/destination.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
