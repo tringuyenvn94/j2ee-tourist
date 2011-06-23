@@ -16,7 +16,7 @@
 %>
 
 <div id="main-content" style="width: 100%">
-    <div class="article article131 heading">
+    <div class="article heading">
         <h1 class="contentheading">
             <a class="contentpagetitle" href="#">
                 <%= tourist.getTouristTitle()%>
@@ -26,10 +26,8 @@
             <ul class="meta"></ul>
             
             <p>
-                <a class="caption" href="">                                
-                    <div class="img_caption left" style="float: left; width: 154px;">
-                        <img width="154" height="110" border="0" align="left" src="<%= tourist.getTouristImage()%>" class="caption"/>
-                    </div>
+                <a class="img_caption left" style="float: left; width: 154px;" href="">
+                    <img width="154" height="110" border="0" align="left" src="<%= tourist.getTouristImage()%>" class="caption"/>
                 </a>
 
                 <a target="_blank" href="" class="caption" style="float: right">
@@ -47,9 +45,13 @@
                 <br/>
                 <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Địa điểm: &nbsp;&nbsp;</span>
                 <br/>
-                <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Xuất phát: &nbsp;&nbsp;</span>
+                <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Xuất phát: &nbsp;&nbsp;
+                    <strong>TP.HCM</strong>
+                </span>
                 <br/>
-                <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Trở về: &nbsp;&nbsp;&nbsp;</span>
+                <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Trở về: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>TP.HCM</strong>
+                </span>
                 <br/>
                 <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Giá:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <strong><span style="color: #ff0000;"><%= tourist.getTouristPrice() %>&nbsp;&nbsp;VND</span></strong>

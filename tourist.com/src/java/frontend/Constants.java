@@ -8,11 +8,7 @@ package frontend;
  *
  * @author Dung Nguyen
  */
-public enum ListAction {
-    list,
-    detail,
-    introduction,
-    rule,
-    order,
-    contact
+public class Constants {
+    public static String GIOITHIEU = "Giới thiệu";
+    public static String CHINHSACH = "Chính sách bán tour";
 }

@@ -8,19 +8,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import tourist.business.ArticleService;
 import tourist.business.TouristService;
 import tourist.business.Utility;
-import tourist.entities.ListTourist;
-import tourist.entities.Tourist;
+import tourist.entities.Article;
+import tourist.entities.ListArticle;
 
 /**
  *
  * @author Dung Nguyen
  */
-public class tour extends HttpServlet {
+@WebServlet(name = "news", urlPatterns = {"/news"})
+public class news extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -92,13 +95,10 @@ public class tour extends HttpServlet {
     
     protected void actionGetList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cattegory = request.getParameter("id");
+        ListArticle listArticle = ArticleService.getListArticleByCategory(Integer.valueOf(1), 1, Utility.pagesize, Long.valueOf(0));
         
-        ListTourist listTourist = TouristService.getListTouristByCategory(Integer.parseInt(cattegory), 1, Utility.pagesize, Long.valueOf(0));
-        
-        request.setAttribute("listtourist", listTourist);
-        
-        String url="./frontend/tour/tour.jsp";
+        request.setAttribute("listarticle", listArticle);
+        String url="./frontend/news/news.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
@@ -107,11 +107,11 @@ public class tour extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
                 
-        Tourist tourist = TouristService.getTourist(Long.parseLong(id));
+        Article article = ArticleService.getArticle(Long.parseLong(id));
         
-        request.setAttribute("tourist", tourist);
+        request.setAttribute("article", article);
         
-        String url="./frontend/tour/detail.jsp";
+        String url="./frontend/news/detail.jsp";
         RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
