@@ -95,7 +95,11 @@ public class news extends HttpServlet {
     
     protected void actionGetList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ListArticle listArticle = ArticleService.getListArticleByCategory(Integer.valueOf(1), 1, Utility.pagesize, Long.valueOf(0));
+        String strpage = request.getParameter("page");
+        Integer currpage=1;
+        if(strpage!=null)
+            currpage=Integer.valueOf(strpage);
+        ListArticle listArticle = ArticleService.getListArticle(currpage, Utility.pagesize, Long.valueOf(0));
         
         request.setAttribute("listarticle", listArticle);
         String url="./frontend/news/news.jsp";
