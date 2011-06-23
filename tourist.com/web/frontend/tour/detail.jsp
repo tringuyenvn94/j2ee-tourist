@@ -24,21 +24,26 @@
         </h1>
         <div class="articlecontent">
             <ul class="meta"></ul>
-            
+
             <p>
                 <a class="img_caption left" style="float: left; width: 154px;" href="">
+                    <%
+                        if (tourist.getTouristImage().isEmpty() || tourist.getTouristImage().equalsIgnoreCase("")) {%>                                    
+                    <img width="154" height="110" border="0" align="left" src="<%= request.getContextPath()%>/style/image/pic/image_default.jpg" class="caption"/>
+                    <% } else {%>
                     <img width="154" height="110" border="0" align="left" src="<%= tourist.getTouristImage()%>" class="caption"/>
+                    <%}%>
                 </a>
 
-                <a target="_blank" href="" class="caption" style="float: right">
+                <a target="_blank" href="<%= request.getContextPath()%>/tour?action=order&id=<%= tourist.getTouristId()%>" class="caption" style="float: right">
                     <img width="70" height="24" border="0" src="<%= request.getContextPath()%>/style/image/4.jpg"/>
                 </a>
 
                 <span style="font-family: arial,helvetica,sans-serif; color: #000000;">&nbsp; Thời gian: &nbsp;&nbsp; 
                     <strong>
-                        <span style="color: #ff0000;"><%= tourist.getTouristNumDay() %></span>
+                        <span style="color: #ff0000;"><%= tourist.getTouristNumDay()%></span>
                         <span style="color: #ff0000;"> ngày </span>
-                        <span style="color: #ff0000;"><%= tourist.getTouristNumNight() %></span>
+                        <span style="color: #ff0000;"><%= tourist.getTouristNumNight()%></span>
                         <span style="color: #ff0000;"> đêm</span>
                     </strong>                                
                 </span>
@@ -54,16 +59,16 @@
                 </span>
                 <br/>
                 <span style="font-family: arial,helvetica,sans-serif;">&nbsp; Giá:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <strong><span style="color: #ff0000;"><%= tourist.getTouristPrice() %>&nbsp;&nbsp;VND</span></strong>
+                    <strong><span style="color: #ff0000;"><%= tourist.getTouristPrice()%>&nbsp;&nbsp;VND</span></strong>
                 </span>
                 <br/><br/>
             </p>
-            
+
             <p>&nbsp;</p>
-            
-            
+
+
             <div>
-                <%= tourist.getTouristBody() %>
+                <%= tourist.getTouristBody()%>
             </div>
         </div>
     </div>

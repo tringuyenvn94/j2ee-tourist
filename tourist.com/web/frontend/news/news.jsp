@@ -30,8 +30,13 @@
                                 </h2>
                                 <ul class="meta"></ul>
                                 <p style="float: left">
-                                    <a href="<%= request.getContextPath()%>/news?action=detail&id=<%= listarticle.get(i).getArticleId() %>">
-                                    <img width="135" height="53" border="0" src="<%= listarticle.get(i).getArticleThumbnail()%>"/>
+                                    <a href="<%= request.getContextPath()%>/news?action=detail&id=<%= listarticle.get(i).getArticleId() %>">                                    
+                                        <%
+                                            if (listarticle.get(i).getArticleThumbnail().isEmpty() || listarticle.get(i).getArticleThumbnail().equalsIgnoreCase("")) {%>                                    
+                                            <img width="154" height="110" border="0" align="left" src="<%= request.getContextPath()%>/style/image/pic/image_default.jpg" class="caption"/>
+                                        <% } else {%>
+                                            <img width="154" height="110" border="0" align="left" src="<%= listarticle.get(i).getArticleThumbnail()%>" class="caption"/>
+                                        <%}%>
                                     </a>
                                 </p>
                                 <p style="text-align: justify; float: left; color: black">
