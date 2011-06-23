@@ -33,10 +33,14 @@ public class RegistrationService {
 
     public static ListRegistration getListRegistration(Long tourist_id,Integer currpage, Integer pagesize,Long totalrecord,Integer approved){
         StringBuilder fieldname=new StringBuilder();
+        fieldname.append(Registration.RegistrationId).append(",");
         fieldname.append(Registration.TouristId).append(",");
         fieldname.append(Registration.RegistrationUserName).append(",");
         fieldname.append(Registration.RegistrationUserPhone).append(",");
-        fieldname.append(Registration.RegistrationUserEmail);
+        fieldname.append(Registration.RegistrationUserEmail).append(",");
+        fieldname.append(Registration.RegistrationApproved).append(",");
+        fieldname.append(Registration.RegistrationDate);
+
 
         StringBuilder condition=new StringBuilder();
         condition.append(1);
@@ -49,6 +53,7 @@ public class RegistrationService {
 
         StringBuilder order=new StringBuilder();
         order.append(Registration.RegistrationDate).append(" DESC");
+        order.append(",").append(Registration.RegistrationApproved).append(" DESC");
 
         RegistrationDAO registrationdao=RegistrationDAO.getInstance();
         return registrationdao.getListRegistration(fieldname.toString(), condition.toString(), currpage, pagesize, totalrecord, order.toString());
