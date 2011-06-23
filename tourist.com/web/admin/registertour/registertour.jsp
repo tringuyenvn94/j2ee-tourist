@@ -92,7 +92,13 @@
                                         <td><%=listregistration.get(index).getRegistrationUserEmail()%></td>
                                         <td align="center"><%=listregistration.get(index).getRegistrationUserPhone()%></td>
                                         <td align="center"><%=Utility.parseDateToString(listregistration.get(index).getRegistrationDate(),"dd/MM/yyyy")%></td>
-                                        <td align="center"><%=listregistration.get(index).getRegistrationApproved()%></td>
+                                        <td align="center">
+                                            <%if(listregistration.get(index).getRegistrationApproved()==0){%>
+                                                    <img alt="Ẩn"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-unpublish.png" width="16" height="16" border="0"/>
+                                                 <%}else{%>
+                                                 <img alt="Hiện"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-publish.png" width="16" height="16" border="0"/>
+                                                <%}%>
+                                        </td>
                                         <td align="center">
                                             <a href="javascript:void(0);" onclick="removeObject('adminform',<%=listregistration.get(index).getRegistrationId()%>)">
                                                 <img alt="Xóa"  src="<%= request.getContextPath()%>/style/image/admin/icon-32-remove.jpg" width="16" height="16" border="0"/>

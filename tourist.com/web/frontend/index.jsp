@@ -68,8 +68,7 @@
                                     <a class="readon" href="<%= request.getContextPath()%>/tour?action=detail&id=<%= listtourist.get(i).getTouristId() %>">
                                         Đọc thêm: <%= listtourist.get(i).getTouristTitle() %>
                                     </a>
-                                </p>
-                            </p>
+                                </p>                           
                         </div>
                     </div>
                 </div>
