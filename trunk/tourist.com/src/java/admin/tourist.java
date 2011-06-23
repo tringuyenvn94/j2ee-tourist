@@ -258,7 +258,19 @@ public class tourist extends HttpServlet {
             return false;
         }
         try{
+            String image=(request.getParameter("fcksummary"));
             tourist.setTouristImage("");
+            if(image!=null){
+                int offset=image.indexOf("src=\"");
+                if(offset>0){
+                    image=image.substring(offset+5,image.length());
+                    offset=image.indexOf("\"");
+                    if(offset>0){
+                        tourist.setTouristImage(image.substring(0,offset));
+                    }
+                }
+            }
+            
         }catch(Exception exp){
             message="Sai dữ liệu ";
             return false;
