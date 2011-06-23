@@ -36,28 +36,11 @@
                 </li>                
             </ul>
         </li>
-		<li class="parent root">
-            <a class="daddy item">
+	<li class="parent root">
+            <a href="<%= request.getContextPath()%>/registertour" class="item">
                 <span>Khách Hàng</span>
-            </a>
-            <ul class="level2">
-                <li class="item60">
-                    <a href="<%= request.getContextPath()%>/registertour" class="item">
-                        <span>Đăng ký tour</span>
-                    </a>					
-                </li>
-                <li class="item62">
-                    <a href="#" class="item">
-                        <span>Bình luận</span>
-                    </a>
-                </li>                          
-            </ul>
-        </li>
-        <li class="parent root">
-            <a href="#" class="daddy item">
-                <span>Chỉnh Sửa Chung</span>
-            </a>
-        </li>
+            </a>            
+        </li>        
         <li class="parent root">
             <a href="<%= request.getContextPath()%>/logout" class="daddy item">
                 <span>Đăng Xuất</span>
