@@ -14,5 +14,6 @@ public enum ListAction {
     introduction,
     rule,
     order,
+    confirm,
     contact
 }

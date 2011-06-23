@@ -14,10 +14,6 @@
                     <file>${file.reference.commons-fileupload-1.2.2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library dirs="100">
-                    <file>${reference.tourist_ejb.dist}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
                 <library dirs="200">
                     <file>${file.reference.commons-io-1.4.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
@@ -36,6 +32,10 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.slf4j-simple-1.5.8.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="100">
+                    <file>${reference.tourist_ejb.dist}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

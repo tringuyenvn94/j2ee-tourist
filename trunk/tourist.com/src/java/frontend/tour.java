@@ -11,9 +11,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import tourist.business.RegistrationService;
 import tourist.business.TouristService;
 import tourist.business.Utility;
 import tourist.entities.ListTourist;
+import tourist.entities.Registration;
 import tourist.entities.Tourist;
 
 /**
@@ -41,6 +43,12 @@ public class tour extends HttpServlet {
                 switch (enumaction) {
                     case detail:
                         actionDetail(request, response);
+                        break;
+                    case order:
+                        actionOrder(request, response);
+                        break;
+                    case confirm:
+                        actionConfirm(request, response);
                         break;
                     default:
                         actionGetList(request, response);
@@ -89,30 +97,69 @@ public class tour extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
     protected void actionGetList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cattegory = request.getParameter("id");
-        
+
         ListTourist listTourist = TouristService.getListTouristByCategory(Integer.parseInt(cattegory), 1, Utility.pagesize, Long.valueOf(0));
-        
+
         request.setAttribute("listtourist", listTourist);
-        
-        String url="./frontend/tour/tour.jsp";
-        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+
+        String url = "./frontend/tour/tour.jsp";
+        RequestDispatcher reqdisparcher = request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
     }
-    
+
     protected void actionDetail(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-                
+
         Tourist tourist = TouristService.getTourist(Long.parseLong(id));
-        
+
         request.setAttribute("tourist", tourist);
-        
-        String url="./frontend/tour/detail.jsp";
-        RequestDispatcher reqdisparcher=request.getRequestDispatcher(url);
+
+        String url = "./frontend/tour/detail.jsp";
+        RequestDispatcher reqdisparcher = request.getRequestDispatcher(url);
         reqdisparcher.forward(request, response);
+    }
+
+    protected void actionOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+
+        Tourist tourist = TouristService.getTourist(Long.parseLong(id));
+        request.setAttribute("tourist", tourist);
+
+        String url = "./frontend/tour/order.jsp";
+        RequestDispatcher reqdisparcher = request.getRequestDispatcher(url);
+        reqdisparcher.forward(request, response);
+    }
+
+    protected void actionConfirm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            Registration reg = new Registration();
+            reg.setTouristId(Long.parseLong(request.getParameter("id")));
+            reg.setRegistrationUserName(request.getParameter("name"));
+            reg.setRegistrationUserCode(request.getParameter("card"));
+            reg.setRegistrationUserAddress(request.getParameter("adress"));
+            reg.setRegistrationUserEmail(request.getParameter("email"));
+            reg.setRegistrationUserPhone(request.getParameter("telephone"));
+            reg.setRegistrationNumMember(Integer.parseInt(request.getParameter("nummember")));
+            reg.setRegistrationDate(Utility.parseDateToLong(request.getParameter("date")));
+
+            RegistrationService.addRegistration(reg);
+
+            String url = "./frontend/tour/confirm.jsp";
+            RequestDispatcher reqdisparcher = request.getRequestDispatcher(url);
+            reqdisparcher.forward(request, response);
+        } catch (Exception e) {
+            String url = "./frontend/tour/order.jsp";
+            RequestDispatcher reqdisparcher = request.getRequestDispatcher(url);
+            reqdisparcher.forward(request, response);
+            reqdisparcher.forward(request, response);
+        }
+
     }
 }

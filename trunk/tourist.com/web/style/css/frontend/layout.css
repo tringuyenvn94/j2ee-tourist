@@ -196,3 +196,18 @@ div#content div#footer p.copyright
 
 div#content div#footer p img
 { vertical-align: middle; }
+
+.ordertitle{
+    background: url("/tourist.com/style/image/h2.gif") no-repeat scroll 0 0 transparent;
+    color: #000000;
+    font-family: "Times New Roman",Times,serif;
+    font-size: 15px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-indent: 15px;
+    width: 100%;
+}

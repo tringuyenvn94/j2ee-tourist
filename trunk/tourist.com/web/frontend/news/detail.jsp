@@ -26,7 +26,12 @@
             
             <p>
                 <a class="img_caption left" style="float: left; width: 154px;" href="">
-                    <img width="154" height="110" border="0" align="left" src="<%= article.getArticleThumbnail()%>" class="caption"/>
+                    <%
+                        if (article.getArticleThumbnail().isEmpty() || article.getArticleThumbnail().equalsIgnoreCase("")) {%>                                    
+                        <img width="154" height="110" border="0" align="left" src="<%= request.getContextPath()%>/style/image/pic/image_default.jpg" class="caption"/>
+                    <% } else {%>
+                        <img width="154" height="110" border="0" align="left" src="<%= article.getArticleThumbnail()%>" class="caption"/>
+                    <%}%>
                 </a>
             </p>
             <div style="float: left">
