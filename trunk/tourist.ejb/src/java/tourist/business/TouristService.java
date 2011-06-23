@@ -10,6 +10,7 @@ import javax.ejb.LocalBean;
 import tourist.entities.Tourist;
 import tourist.entities.ListTourist;
 import tourist.data.TouristDAO;
+import tourist.entities.ListRegistration;
 
 /**
  *
@@ -150,6 +151,14 @@ public class TouristService {
 
         TouristDAO touristdao=TouristDAO.getInstance();
         return touristdao.getListTourist(fieldname.toString(), condition.toString(), currpage, pagesize, totalrecord, order.toString());
+    }
+
+    public static ListTourist getListTouristByRegistration(ListRegistration listregistration){
+        ListTourist listtourist=new ListTourist();
+        for(int index=0;index<listregistration.size();index++){
+            listtourist.add(TouristService.getTourist(listregistration.get(index).getTouristId()));
+        }
+        return listtourist;
     }
 
     /*

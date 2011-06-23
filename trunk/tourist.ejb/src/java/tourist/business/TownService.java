@@ -10,6 +10,7 @@ import javax.ejb.LocalBean;
 import tourist.entities.Town;
 import tourist.entities.ListTown;
 import tourist.data.TownDAO;
+import tourist.entities.ListDestination;
 
 /**
  *
@@ -34,6 +35,15 @@ public class TownService {
     public static ListTown getListTown(Integer nation_id){
         TownDAO towndao=TownDAO.getInstance();
         return towndao.getListTown(nation_id);
+    }
+
+    public static ListTown getListTown(ListDestination listdestination){
+        ListTown listtown=new ListTown();
+        TownDAO towndao=TownDAO.getInstance();
+        for(int index=0;index<listdestination.size();index++){
+            listtown.add(towndao.getTown(listdestination.get(index).getTownId()));
+        }
+        return listtown;
     }
 
     /*
