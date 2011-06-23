@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50153
 File Encoding         : 65001
 
-Date: 2011-06-15 17:47:25
+Date: 2011-06-20 21:06:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,13 +32,15 @@ CREATE TABLE `article` (
   PRIMARY KEY (`articleid`),
   KEY `fk_relationship_7` (`categoryid`),
   CONSTRAINT `fk_relationship_7` FOREIGN KEY (`categoryid`) REFERENCES `category` (`categoryid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of article
 -- ----------------------------
 INSERT INTO `article` VALUES ('1', '1', 'Thiên đường Phuket', '', '<p style=\"text-align: justify;\"><strong><span style=\"font-size: small;\">Biển xanh như ngọc. C&aacute;t trắng mịn m&agrave;ng. Những v&aacute;ch đ&aacute; sừng sững giữa trời nước m&ecirc;nh m&ocirc;ng. Những hang động đ&aacute; v&ocirc;i huyền hoặc. Những rạn san h&ocirc; lung linh sắc m&agrave;u&hellip; Tất cả l&agrave;m n&ecirc;n một thi&ecirc;n đường mang t&ecirc;n Phuket.</span></strong></p>', '<p style=\"text-align: center;\"><img height=\"306\" width=\"500\" alt=\"\" src=\"/tourist.com/uploads/image/Tin%20tuc/phuket/phuket.jpg\" /></p>\r\n<p><span style=\"font-size: small;\">Với tổng diện t&iacute;ch gần 600 km2, l&agrave; h&ograve;n đảo lớn nhất <a href=\"http://datviettour.com.vn/tour-nuoc-ngoai/3/du-lich-thai-lan\">Th&aacute;i Lan</a>, Phuket c&oacute; địa h&igrave;nh đa dạng: biển, rừng nguy&ecirc;n sinh, n&uacute;i, hang động&hellip; c&ugrave;ng những cảnh đẹp l&agrave;m say l&ograve;ng du kh&aacute;ch. Chẳng c&oacute; g&igrave; lạ khi Phuket &ndash; h&ograve;n ngọc miền Nam Th&aacute;i Lan - lu&ocirc;n được đ&aacute;nh gi&aacute; l&agrave; một trong những điểm đến hấp dẫn nhất của ch&acirc;u &Aacute;. </span></p>\r\n<p style=\"text-align: center;\"><img height=\"318\" width=\"500\" src=\"/tourist.com/uploads/image/Tin%20tuc/phuket/phuket1.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: center;\">&nbsp;<span style=\"font-size: small;\">Đảo Phi Phi</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: small;\">Nằm kề b&ecirc;n h&ograve;n đảo ch&iacute;nh Phuket, quần đảo Phi Phi như một điểm nhấn cho bức tranh đầy sắc m&agrave;u của Phuket th&ecirc;m to&agrave;n vẹn. Phi Phi gồm 6 đảo nhỏ, nổi bật nhất l&agrave; đảo Phi Phi Don v&agrave; Phi Phi Ley, mỗi đảo l&agrave; một n&eacute;t đẹp ri&ecirc;ng. Phi Phi Don dịu d&agrave;ng e ấp với những b&atilde;i c&aacute;t mịn m&agrave;ng. Phi Phi Ley h&ugrave;ng vĩ, dữ dội với những v&aacute;ch đ&aacute; sừng sững chung quanh đảo. B&ecirc;n cạnh vẻ đẹp trinh nguy&ecirc;n v&agrave; hoang sơ, Phi Phi c&ograve;n tự h&agrave;o l&agrave; nơi c&oacute; bầu kh&ocirc;ng kh&iacute; tinh khiết nhất Th&aacute;i Lan. Đến đ&acirc;y, ngo&agrave;i việc tha hồ đắm m&igrave;nh trong những b&atilde;i biển sạch nhất h&agrave;nh tinh, du kh&aacute;ch c&ograve;n thỏa ch&iacute; với những tr&ograve; chơi mạo hiểm &ndash; kh&aacute;m ph&aacute; như: lặn ngắm san h&ocirc;, d&ugrave; lượn, ch&egrave;o thuyền kayak kh&aacute;m ph&aacute; c&aacute;c hang động đ&aacute; v&ocirc;i kỳ b&iacute;&hellip;</span></p>\r\n<p style=\"text-align: center;\"><img height=\"679\" width=\"500\" src=\"/tourist.com/uploads/image/Tin%20tuc/phuket/phuket2.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: center;\"><img height=\"359\" width=\"500\" src=\"/tourist.com/uploads/image/Tin%20tuc/phuket/phuket3.jpg\" alt=\"\" /></p>\r\n<p><span style=\"font-size: small;\">Hấp dẫn kh&ocirc;ng k&eacute;m l&agrave; vịnh Phang Nga. Đến đ&acirc;y, du kh&aacute;ch sẽ c&oacute; một trải nghiệm kh&oacute; qu&ecirc;n: đi thuyền d&agrave;i (một loại thuyền truyền thống của Th&aacute;i Lan) tham quan phong cảnh vịnh với cả trăm h&ograve;n đảo lớn nhỏ. Nơi đ&acirc;y c&oacute; đảo James Bond (t&ecirc;n cũ l&agrave; Khao Phingkan). Thập ni&ecirc;n 60 của thế kỷ trước, c&aacute;c nh&agrave; l&agrave;m phim Hollywood đ&atilde; chọn nơi đ&acirc;y l&agrave;m bối cảnh để quay tập phim &ldquo;The man with the golden gun&rdquo; trong loạt phim về điệp vi&ecirc;n 007. Sau đ&oacute;, để thu h&uacute;t kh&aacute;ch du lịch, người Th&aacute;i đổi lu&ocirc;n t&ecirc;n h&ograve;n đảo th&agrave;nh James Bond.</span></p>\r\n<p style=\"text-align: center;\"><img height=\"310\" width=\"500\" src=\"/tourist.com/uploads/image/Tin%20tuc/phuket/phuket4.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: small;\">Kh&ocirc;ng chỉ thu h&uacute;t kh&aacute;ch <a href=\"http://datviettour.com.vn\">du lịch</a> bằng thi&ecirc;n nhi&ecirc;n hoang sơ v&agrave; kỳ th&uacute;, Phuket c&ograve;n l&agrave; nơi tập trung c&aacute;c resort v&agrave; c&aacute;c khu giải tr&iacute; sang trọng, nhộn nhịp bậc nhất tr&ecirc;n đất Th&aacute;i. Cuộc sống về đ&ecirc;m của Phuket cũng nhộn nhịp chẳng k&eacute;m thủ đ&ocirc; Bangkok với c&aacute;c khu thương mại sầm uất, c&aacute;c chương tr&igrave;nh biểu diễn ca m&uacute;a nhạc, c&aacute;c show xiếc th&uacute;&hellip; </span></p>\r\n<p style=\"text-align: center;\"><img height=\"310\" width=\"500\" src=\"/tourist.com/uploads/image/Tin%20tuc/phuket/phuket5.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: small;\">Nhiều người đ&atilde; từng xem bộ phim nổi tiếng The Beach sản xuất năm 2000, lấy bối cảnh ch&iacute;nh l&agrave; một b&atilde;i biển thuộc quần đảo Phi Phi. Richard &ndash; nh&acirc;n vật ch&iacute;nh do Leonardo DiCaprio thủ vai &ndash; đ&atilde; đi t&igrave;m cho ri&ecirc;ng m&igrave;nh một thi&ecirc;n đường: kh&ocirc;ng điện, kh&ocirc;ng internet, chẳng nhộn nhịp x&ocirc; bồ; chỉ c&oacute; con người h&ograve;a m&igrave;nh c&ugrave;ng cỏ c&acirc;y, c&aacute;t, gi&oacute;, nắng, s&oacute;ng biển; hoang sơ v&agrave; trinh nguy&ecirc;n đến tột c&ugrave;ng. Phim ảnh chỉ l&agrave; hư cấu, nhưng chỉ cần một lần đến với Phuket, với Phi Phi, với Phang Nga, du kh&aacute;ch sẽ nhận ra một điều: vẫn c&ograve;n những thi&ecirc;n đường c&oacute; thật tr&ecirc;n tr&aacute;i đất n&agrave;y &hellip;</span></p>\r\n<p style=\"text-align: justify;\"><strong><a href=\"http://datviettour.com.vn\">Du lịch Đất Việt</a></strong> St</p>', '1307984400000', '0', '1');
-INSERT INTO `article` VALUES ('2', '1', 'abc', '', '<p>asdsd</p>', '<p>asdasd</p>', '1308133557684', '0', '1');
+INSERT INTO `article` VALUES ('2', '1', 'Lạc vào thế giới 3D ở động Thiên Đường', '', '<p><strong><span style=\"font-size: small;\">Những khối thạch nhũ xếp l&ecirc;n  nhau tạo th&agrave;nh h&igrave;nh con t&agrave;u của cướp biển, ng&ocirc;i nh&agrave; ma hay nh&agrave; r&ocirc;ng...  đ&atilde; tạo n&ecirc;n n&eacute;t kỳ diệu ở hang động trong quần thể Phong Nha (Quảng  B&igrave;nh).</span></strong></p>', '<p><span style=\"font-size: small;\">Động Thi&ecirc;n Đường được những nh&agrave; th&aacute;m hiểm người Anh ph&aacute;t hiện v&agrave;o năm 2005. Năm 2010, động Thi&ecirc;n Đường th&agrave;nh điểm <a href=\"http://datviettour.com.vn/\">du lịch</a> l&yacute; tưởng ở miền Trung.<br />\r\nSau khoảng 10km khi xe rời th&agrave;nh phố Đồng Hới (Quảng B&igrave;nh), những rừng  cao su thẳng tắp sẽ hiện ra trước mặt gợi l&ecirc;n một &yacute; nghĩ &quot;đường tới  thi&ecirc;n đường l&agrave; đ&acirc;y sao?&quot;. Rồi xe lướt qua quần thể động Phong Nha, chạy  song song với con suối xanh đến ng&uacute;t ng&agrave;n.<br />\r\nTr&ecirc;n đoạn đường d&agrave;i 2km tiếp theo, đo&agrave;n người sẽ đi bộ trong kh&ocirc;ng kh&iacute;  dịu m&aacute;t của c&acirc;y cối, hoa l&aacute;, chim ch&oacute;c, v&agrave; đặc biệt l&agrave; bướm. Những đ&agrave;n  bướm bay rợp lối đi đ&atilde; l&agrave; minh chứng cho điều nhiều người băn khoăn:  &quot;Nơi đ&acirc;y thực sự l&agrave; thi&ecirc;n đường&quot;.<br />\r\nBước qua 524 bậc, bạn đứng trước một cửa hang nhỏ, nhưng nh&igrave;n v&agrave;o trong  th&igrave; đ&oacute; l&agrave; một khối kiến tr&uacute;c v&ocirc; c&ugrave;ng thần kỳ. Cảm gi&aacute;c đầu ti&ecirc;n của mỗi  người khi bước những đầu ti&ecirc;n xuống động Thi&ecirc;n Đường l&agrave; như v&agrave;o một xứ  sở kh&ocirc;ng c&oacute; thực.<br />\r\nỞ đ&oacute;, kh&ocirc;ng kh&iacute; lạnh, ẩm, ướt v&agrave; m&ecirc;nh m&ocirc;ng, hun h&uacute;t những kiến tạo của  thạch nhũ. Đ&oacute; l&agrave; những khối đ&aacute; với nhiều h&igrave;nh th&ugrave; kh&aacute;c nhau, những lối  rẽ c&ugrave;ng với &aacute;nh s&aacute;ng kỳ ảo tạo n&ecirc;n một kh&ocirc;ng gian như đang xem phim 3D.</span></p>', '1308070800000', '0', '1');
+INSERT INTO `article` VALUES ('7', '8', 'abc', '', '', '', '1308497142324', '1', '1');
+INSERT INTO `article` VALUES ('10', '1', 'abc123', '', '', '', '1307379600000', '1', '1');
 
 -- ----------------------------
 -- Table structure for `category`
@@ -52,12 +54,16 @@ CREATE TABLE `category` (
   `categoryordering` int(11) DEFAULT NULL,
   `categorypublished` int(11) DEFAULT '1',
   PRIMARY KEY (`categoryid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '0', 'Tin tức', '1', '1', '1');
+INSERT INTO `category` VALUES ('1', '0', 'Tin tức', '1', '0', '1');
+INSERT INTO `category` VALUES ('2', '0', 'Du lịch trong nước', '2', '1', '1');
+INSERT INTO `category` VALUES ('3', '0', 'Du lịch nước ngoài', '2', '2', '1');
+INSERT INTO `category` VALUES ('6', '0', 'Sự kiện', '1', '0', '1');
+INSERT INTO `category` VALUES ('8', '0', 'Du lịch Nhật Bản', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -183,11 +189,13 @@ CREATE TABLE `tourist` (
   PRIMARY KEY (`touristid`),
   KEY `fk_relationship_6` (`categoryid`),
   CONSTRAINT `fk_relationship_6` FOREIGN KEY (`categoryid`) REFERENCES `category` (`categoryid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tourist
 -- ----------------------------
+INSERT INTO `tourist` VALUES ('7', '2', 'Ngày hè lý tưởng ở Nha Trang', '', '<p>Đang c&acirc;̣p nh&acirc;̣t</p>', '', '2000000', '2', '1', '1308416400000', '0', '1');
+INSERT INTO `tourist` VALUES ('8', '2', 'Đến với thành phố biển - Phan Thiết', '', '<p>Chưa có dữ li&ecirc;̣u</p>', '', '2000000', '3', '2', '1308243600000', '1', '1');
 
 -- ----------------------------
 -- Table structure for `town`
@@ -200,8 +208,13 @@ CREATE TABLE `town` (
   PRIMARY KEY (`townid`),
   KEY `fk_relationship_1` (`nationid`),
   CONSTRAINT `fk_relationship_1` FOREIGN KEY (`nationid`) REFERENCES `nation` (`nationid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of town
 -- ----------------------------
+INSERT INTO `town` VALUES ('1', '1', 'TP.Hồ Chí Minh');
+INSERT INTO `town` VALUES ('2', '1', 'Hà Nội');
+INSERT INTO `town` VALUES ('3', '1', 'Khánh Hòa');
+INSERT INTO `town` VALUES ('4', '1', 'Phan Thiết');
+INSERT INTO `town` VALUES ('5', '1', 'Vĩnh Long');
