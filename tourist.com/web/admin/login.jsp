@@ -90,9 +90,9 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Use a valid username and password to gain access to the Administrator Back-end.</p>
+                        <p>Để truy cập vào phần quản trị bạn phải có tài khoản quản trị.</p>
                         <p>
-                            <a href="<%= request.getContextPath()%>">Return to site Home Page</a>
+                            <a href="<%= request.getContextPath()%>">Trở về trang chủ</a>
                         </p>
                         <div id="lock"></div>
                         <div class="clr"></div>
